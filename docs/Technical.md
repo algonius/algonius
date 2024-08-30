@@ -22,90 +22,83 @@ Algonius是一个基于DEX的量化交易Chrome浏览器插件,旨在为加密�
 
 ### 2.1 架构图
 
-```plantuml
-@startuml
-!define RECTANGLE class
+```mermaid
+graph TD
+    subgraph "Chrome Extension"
+        UI["Popup UI"]
+        subgraph Background["Background Script"]
+            DataCollector["多DEX数据采集模块"]
+            DataProcessor["数据处理模块"]
+            AIDecision["可配置AI决策模块"]
+            TradeExecutor["多链交易执行模块"]
+            Wallet["钱包模块"]
+            Storage["本地存储"]
+        end
+        Content["Content Script"]
+    end
 
-package "Chrome Extension" {
-    RECTANGLE "Popup UI" as UI
-    RECTANGLE "Background Script" as Background {
-        RECTANGLE "多DEX数据采集模块" as DataCollector
-        RECTANGLE "数据处理模块" as DataProcessor
-        RECTANGLE "可配置AI决策模块" as AIDecision
-        RECTANGLE "多链交易执行模块" as TradeExecutor
-        RECTANGLE "钱包模块" as Wallet
-        RECTANGLE "本地存储" as Storage
-    }
-    RECTANGLE "Content Script" as Content
-}
-
-UI --> Background : 消息传递
-Content <--> Background : 消息传递
-DataCollector <-- Content : 页面数据
-DataCollector --> DataProcessor : 传递原始数据
-DataProcessor --> AIDecision : 提供处理后的数据
-AIDecision --> TradeExecutor : 生成交易信号
-TradeExecutor <--> Wallet : 执行交易
-UI <--> Storage : 读写配置和历史数据
-
-@enduml
+    UI --> Background
+    Content <--> Background
+    DataCollector <-- Content
+    DataCollector --> DataProcessor
+    DataProcessor --> AIDecision
+    AIDecision --> TradeExecutor
+    TradeExecutor <--> Wallet
+    UI <--> Storage
 ```
 
 ### 2.2 模块图
 
-```plantuml
-@startuml
-package "Popup UI" {
-  [策略配置]
-  [交易监控]
-  [钱包管理]
-  [性能分析]
-}
+```mermaid
+graph TD
+    subgraph "Popup UI"
+        UI1["策略配置"]
+        UI2["交易监控"]
+        UI3["钱包管理"]
+        UI4["性能分析"]
+    end
 
-package "Background Script" {
-  package "多DEX数据采集模块" {
-    [历史K线获取]
-    [实时K线订阅]
-  }
-  
-  package "数据处理模块" {
-    [技术指标计算]
-    [新闻处理]
-  }
-  
-  package "可配置AI决策模块" {
-    [AI提供商配置]
-    [交易信号生成]
-  }
-  
-  package "多链交易执行模块" {
-    [链接口调用]
-    [交易状态跟踪]
-  }
-  
-  package "钱包模块" {
-    [助记词管理]
-    [多链支持]
-  }
-  
-  [存储模块]
-}
+    subgraph "Background Script"
+        subgraph "多DEX数据采集模块"
+            DC1["历史K线获取"]
+            DC2["实时K线订阅"]
+        end
+        
+        subgraph "数据处理模块"
+            DP1["技术指标计算"]
+            DP2["新闻处理"]
+        end
+        
+        subgraph "可配置AI决策模块"
+            AI1["AI提供商配置"]
+            AI2["交易信号生成"]
+        end
+        
+        subgraph "多链交易执行模块"
+            TE1["链接口调用"]
+            TE2["交易状态跟踪"]
+        end
+        
+        subgraph "钱包模块"
+            W1["助记词管理"]
+            W2["多链支持"]
+        end
+        
+        SM["存储模块"]
+    end
 
-package "Content Script" {
-  [页面数据抓取]
-  [新闻数据采集]
-}
+    subgraph "Content Script"
+        CS1["页面数据抓取"]
+        CS2["新闻数据采集"]
+    end
 
-"Popup UI" --> "Background Script" : 消息传递
-"Content Script" <--> "Background Script" : 消息传递
-"多DEX数据采集模块" <-- "Content Script" : 页面数据
-"多DEX数据采集模块" --> "数据处理模块" : 传递数据
-"数据处理模块" --> "可配置AI决策模块" : 提供处理后的数据
-"可配置AI决策模块" --> "多链交易执行模块" : 生成信号
-"多链交易执行模块" <--> "钱包模块" : 执行交易
-"Popup UI" <--> "存储模块" : 读写数据
-
-@enduml
+    UI1 & UI2 & UI3 & UI4 --> SM
+    CS1 & CS2 <--> DC1 & DC2
+    DC1 & DC2 --> DP1 & DP2
+    DP1 & DP2 --> AI1 & AI2
+    AI1 & AI2 --> TE1 & TE2
+    TE1 & TE2 <--> W1 & W2
+    UI1 & UI2 & UI3 & UI4 <--> SM
 ```
 
 ### 2.3 关键技术难点分析
