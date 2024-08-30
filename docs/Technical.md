@@ -135,30 +135,29 @@ package "Content Script" {
 ### 3.1 Popup UI模块 (实现在popup.html和popup.js)
 
 接口:
-1. **initUI()**
-   - 功能：初始化插件UI
-   - 输入：无
-   - 输出：无
-   - 业务逻辑：创建popup窗口,渲染主界面,初始化各功能区域
+   1. **initUI()**
+      - 功能：初始化插件UI
+      - 输入：无
+      - 输出：无
+      - 业务逻辑：创建popup窗口,渲染主界面,初始化各功能区域
 
-2. **updateDashboard(data)**
-   - 功能：更新交易面板数据
-   - 输入：data (Object) - 包含K线、指标、新闻摘要等信息
-   - 输出：无
-   - 业务逻辑：根据输入数据更新UI上的各项指标和图表
+   2. **updateDashboard(data)**
+      - 功能：更新交易面板数据
+      - 输入：data (Object) - 包含K线、指标、新闻摘要等信息
+      - 输出：无
+      - 业务逻辑：根据输入数据更新UI上的各项指标和图表
 
-3. **showTradeConfirmation(tradeInfo)**
-   - 功能：显示交易确认对话框
-   - 输入：tradeInfo (Object) - 包含交易对、数量、价格等信息
-   - 输出：Promise<boolean> - 用户确认结果
-   - 业务逻辑：弹出确认对话框,等待用户确认或取消
+   3. **showTradeConfirmation(tradeInfo)**
+      - 功能：显示交易确认对话框
+      - 输入：tradeInfo (Object) - 包含交易对、数量、价格等信息
+      - 输出：Promise[boolean] - 用户确认结果
+      - 业务逻辑：弹出确认对话框,等待用户确认或取消
 
-4. **manageWallet(action, params)**
-   - 功能：管理钱包操作
-   - 输入：action (String) - 操作类型, params (Object) - 操作参数
-   - 输出：Promise<Object> - 操作结果
-   - 业务逻辑：根据action执行相应的钱包操作,如生成助记词、导入助记词、查看地址等
-
+   4. **manageWallet(action, params)**
+      - 功能：管理钱包操作
+      - 输入：action (String) - 操作类型, params (Object) - 操作参数
+      - 输出：Promise[Object] - 操作结果
+      - 业务逻辑：根据action执行相应的钱包操作,如生成助记词、导入助记词、查看地址等
 
 ### 3.2 多DEX数据采集模块 (实现在background.js)
 
@@ -204,7 +203,7 @@ package "Content Script" {
 1. **configureAIProvider(providerConfig)**
    - 功能：配置AI提供商
    - 输入：providerConfig (Object) - 包含提供商类型、API密钥等配置信息
-   - 输出：Promise<boolean> - 配置是否成功
+   - 输出：Promise[boolean] - 配置是否成功
    - 业务逻辑：根据提供的配置信息设置AI提供商
 
 2. **generateTradeSignal(marketData, userStrategy)**
@@ -212,7 +211,7 @@ package "Content Script" {
    - 输入：
      marketData (Object) - 包含K线、指标、新闻等市场数据
      userStrategy (String) - 用户定义的策略
-   - 输出：Promise<Object> - 包含交易信号和理由的对象
+   - 输出：Promise[Object] - 包含交易信号和理由的对象
    - 业务逻辑：调用配置的AI提供商API,将市场数据和用户策略作为输入,生成交易信号
 
 
@@ -222,13 +221,13 @@ package "Content Script" {
 1. **executeTrade(tradeSignal, chainId)**
    - 功能：在指定链上执行交易操作
    - 输入：tradeSignal (Object) - 包含交易类型、数量等信息, chainId (String) - 目标链标识
-   - 输出：Promise<Object> - 交易结果
+   - 输出：Promise[Object] - 交易结果
    - 业务逻辑：根据交易信号和指定的链,调用相应的链接口执行买入或卖出操作
 
 2. **getTransactionStatus(txHash, chainId)**
    - 功能：获取交易状态
    - 输入：txHash (String) - 交易哈希, chainId (String) - 链标识
-   - 输出：Promise<Object> - 交易状态信息
+   - 输出：Promise[Object] - 交易状态信息
    - 业务逻辑：查询指定链上的交易状态并返回结果
 
 
@@ -238,19 +237,19 @@ package "Content Script" {
 1. **generateMnemonic()**
    - 功能：生成新的助记词
    - 输入：无
-   - 输出：Promise<String> - 生成的助记词
+   - 输出：Promise[String] - 生成的助记词
    - 业务逻辑：使用密码学安全的方法生成新的助记词
 
 2. **importMnemonic(mnemonic)**
    - 功能：导入已有助记词
    - 输入：mnemonic (String) - 助记词
-   - 输出：Promise<boolean> - 导入是否成功
+   - 输出：Promise[boolean] - 导入是否成功
    - 业务逻辑：验证并导入提供的助记词
 
 3. **getAddresses(chainId)**
    - 功能：获取指定链的钱包地址
    - 输入：chainId (String) - 链标识
-   - 输出：Promise<String> - 钱包地址
+   - 输出：Promise[String] - 钱包地址
    - 业务逻辑：根据chainId派生对应的钱包地址并返回
 
 
@@ -276,7 +275,7 @@ package "Content Script" {
 1. **scrapePageData()**
    - 功能：从当前页面抓取相关数据
    - 输入：无
-   - 输出：Promise<Object> - 包含K线或新闻数据的对象
+   - 输出：Promise[Object] - 包含K线或新闻数据的对象
    - 业务逻辑：根据当前页面类型(DEX或X.com),抓取相应的K线或新闻数据
 
 2. **injectCustomScript()**
