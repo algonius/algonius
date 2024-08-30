@@ -278,7 +278,7 @@ package "Content Script" {
    - 输出：无
    - 业务逻辑：在需要时向页面注入脚本以增强数据抓取能力或实现特定功能
 
-### 4. 数据流
+## 4. 数据流
 
 1. Content Script (content.js) 从DEX和X.com页面抓取原始数据。
 2. 数据通过消息传递机制发送到Background Script (background.js)。
