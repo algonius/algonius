@@ -159,6 +159,7 @@ package "Content Script" {
    - 输出：Promise<Object> - 操作结果
    - 业务逻辑：根据action执行相应的钱包操作,如生成助记词、导入助记词、查看地址等
 
+
 ### 3.2 多DEX数据采集模块 (实现在background.js)
 
 接口:
@@ -180,6 +181,7 @@ package "Content Script" {
    - 输出：Promise<Array> - 新闻数据数组
    - 业务逻辑：通过消息传递机制从Content Script获取新闻数据,进行初步处理后返回
 
+
 ### 3.3 数据处理模块 (实现在background.js)
 
 接口:
@@ -194,6 +196,7 @@ package "Content Script" {
    - 输入：newsData (Array) - 原始新闻数据
    - 输出：Array - 处理后的新闻摘要数组
    - 业务逻辑：对新闻进行情感分析,提取关键词,生成摘要
+
 
 ### 3.4 可配置AI决策模块 (实现在background.js)
 
@@ -212,6 +215,7 @@ package "Content Script" {
    - 输出：Promise<Object> - 包含交易信号和理由的对象
    - 业务逻辑：调用配置的AI提供商API,将市场数据和用户策略作为输入,生成交易信号
 
+
 ### 3.5 多链交易执行模块 (实现在background.js)
 
 接口:
@@ -226,6 +230,7 @@ package "Content Script" {
    - 输入：txHash (String) - 交易哈希, chainId (String) - 链标识
    - 输出：Promise<Object> - 交易状态信息
    - 业务逻辑：查询指定链上的交易状态并返回结果
+
 
 ### 3.6 钱包模块 (实现在background.js)
 
@@ -248,6 +253,7 @@ package "Content Script" {
    - 输出：Promise<String> - 钱包地址
    - 业务逻辑：根据chainId派生对应的钱包地址并返回
 
+
 ### 3.7 存储模块 (实现在background.js)
 
 接口:
@@ -262,6 +268,7 @@ package "Content Script" {
    - 输入：key (String)
    - 输出：Promise<Any>
    - 业务逻辑：从Chrome的存储API中检索并反序列化数据
+
 
 ### 3.8 Content Script (实现在content.js)
 
@@ -278,6 +285,7 @@ package "Content Script" {
    - 输出：无
    - 业务逻辑：在需要时向页面注入脚本以增强数据抓取能力或实现特定功能
 
+
 ## 4. 数据流
 
 1. Content Script (content.js) 从DEX和X.com页面抓取原始数据。
@@ -286,6 +294,7 @@ package "Content Script" {
 4. 处理后的数据传递给AI决策模块，生成交易信号。
 5. 交易信号传递给交易执行模块，根据用户设置决定是否自动执行。
 6. 交易结果和更新后的数据通过消息传递机制发送到Popup UI (popup.js)进行展示。
+
 
 ## 5. 安全考虑
 
@@ -296,6 +305,7 @@ package "Content Script" {
 5. **代码完整性**：实现CSP (Content Security Policy) 以防止恶意代码注入。
 6. **定期安全审计**：对插件代码进行定期的安全审计和漏洞扫描。
 
+
 ## 6. 性能优化
 
 1. **使用Web Workers**：将耗时的计算任务（如技术指标计算）放在Web Worker中执行，避免阻塞主线程。
@@ -305,12 +315,14 @@ package "Content Script" {
 5. **异步操作**：尽可能使用异步操作，提高插件的响应速度。
 6. **内存管理**：及时释放不再使用的大型对象，避免内存泄漏。
 
+
 ## 7. 扩展性考虑
 
 1. **模块化设计**：采用高度模块化的设计，便于未来添加新功能或支持新的DEX平台。
 2. **插件化架构**：考虑实现插件化架构，允许第三方开发者为Algonius开发扩展功能。
 3. **API抽象**：为核心功能提供抽象的API接口，便于未来的功能扩展和第三方集成。
 4. **配置驱动**：尽可能使用配置文件驱动功能，减少硬编码，提高灵活性。
+
 
 ## 8. 参考资料
 
