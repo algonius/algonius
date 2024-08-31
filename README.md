@@ -55,6 +55,42 @@ pnpm build
 
 构建完成后，您可以在 `build` 目录中找到打包好的扩展程序文件。
 
+**目录结构:**
+
+- `assets/`: 存放静态资源文件
+  - `images/`: 图片文件
+  - `icons/`: 图标文件
+- `src/`: 源代码目录
+  - `components/`: 可复用的 React 组件
+    - `common/`: 通用组件（如按钮、输入框）
+    - `charts/`: 图表相关组件
+    - `forms/`: 表单相关组件
+    - `layout/`: 布局相关组件
+  - `pages/`: 插件的各个页面组件
+    - `dashboard/`: 仪表盘页面
+    - `trade-monitor/`: 交易监控页面
+    - `strategy-config/`: 策略配置页面
+    - `wallet-management/`: 钱包管理页面
+    - `settings/`: 设置页面
+  - `modules/`: 核心功能模块
+    - `data-collection/`: 数据收集模块
+    - `data-processing/`: 数据处理模块
+    - `ai-decision/`: AI 决策模块
+    - `trade-execution/`: 交易执行模块
+    - `wallet/`: 钱包功能模块
+  - `services/`: 外部 API 服务接口
+    - `ai/`: AI 服务接口
+    - `blockchain/`: 区块链服务接口
+  - `scrapers/`: 网页数据抓取模块
+    - `dex/`: 去中心化交易所数据抓取
+    - `news/`: 新闻数据抓取
+  - `utils/`: 工具函数和常量
+    - `formatters/`: 数据格式化工具
+    - `validators/`: 数据验证工具
+    - `constants/`: 常量定义
+  - `hooks/`: 自定义 React hooks
+  - `types/`: TypeScript 类型定义文件
+
 **更多开发信息:**
 
 * [Plasmo 文档](https://docs.plasmo.com/)
