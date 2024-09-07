@@ -1,15 +1,17 @@
+import { loadConfig } from './config'
 import { Algonius } from "./algonius";
 import { Storage } from "@plasmohq/storage";
-
-// Instantiate Storage
-const storage = new Storage();
+import { config } from 'process';
 
 // Function to initialize and start Algonius
 async function initializeAlgonius() {
-  const interval = (await storage.get("interval")) as number | undefined;
-
+  // Instantiate Storage
+  const storage = new Storage();
+  const cfg = await loadConfig(storage)
+  console.log("config:", cfg);
+  
   // Instantiate Algonius with loaded or default interval
-  const algonius = new Algonius(interval ?? 5 * 60 * 1000);
+  const algonius = new Algonius(cfg);
 
   // Start Algonius when the extension is loaded
   algonius.start();

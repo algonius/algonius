@@ -1,3 +1,4 @@
+import { AppConfig } from "./config";
 import { TradeSignal } from "./types";
 import { Agent } from "./modules/ai-decision";
 import { CombinedData } from "./modules/data-collection";
@@ -12,14 +13,14 @@ export class Algonius {
   private interval: number; // Timer interval in milliseconds
   private dataCollector: DataCollector;
 
-  constructor(interval: number = 5 * 60 * 1000) { // Default interval: 5 minutes
-    this.agent = new Agent();
+  constructor(config: AppConfig) { // Default interval: 5 minutes
+    this.agent = new Agent(config.ai);
     this.dataCollector = new DataCollector([
       new DEXScraper(), // Example: Add a DEX scraper
       new NewsScraper(), // Example: Add a news scraper
       new TwitterScraper(), // Example: Add a Twitter scraper
     ]);
-    this.interval = interval;
+    this.interval = config.interval;
   }
 
   // Data Collection Module

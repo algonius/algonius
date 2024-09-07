@@ -17,8 +17,8 @@ export interface NewsData {
 
 export interface TradeSignal {
   symbol: string;
-  action: 'buy' | 'sell';
-  price: number;
+  action: 'buy' | 'sell' | 'hold';
+  price?: number;
   quantity: number;
-  reason: string;
+  reason?: string;
 }
