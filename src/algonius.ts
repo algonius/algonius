@@ -1,29 +1,58 @@
 import { TradeSignal } from "./types";
 import { Agent } from "./modules/ai-decision";
+import { CombinedData } from "./modules/data-collection";
+import { DataCollector } from "./modules/data-collection";
+import { DEXScraper } from "./scrapers/dex";
+import { NewsScraper } from "./scrapers/news";
+import { TwitterScraper } from "./scrapers/twitter";
 
 export class Algonius {
   private agent: Agent;
   private timerId: NodeJS.Timeout | null = null;
   private interval: number; // Timer interval in milliseconds
+  private dataCollector: DataCollector;
 
   constructor(interval: number = 5 * 60 * 1000) { // Default interval: 5 minutes
     this.agent = new Agent();
+    this.dataCollector = new DataCollector([
+      new DEXScraper(), // Example: Add a DEX scraper
+      new NewsScraper(), // Example: Add a news scraper
+      new TwitterScraper(), // Example: Add a Twitter scraper
+    ]);
     this.interval = interval;
   }
 
-  // Data Collection Module (Placeholder)
-  private async collectDataFromDEXes(): Promise<any> {
-    // TODO: Implement data collection from DEXes
-    console.log("Collecting data from DEXes...");
-    return Promise.resolve({});
+  // Data Collection Module
+  private async collectData(): Promise<any> {
+    console.log("Collecting data from various sources...");
+    return this.dataCollector.collectData();
   }
 
-  // Data Processing Module (Placeholder)
-  private async processData(data: any): Promise<any> {
-    // TODO: Implement data processing (e.g., calculate indicators, news sentiment)
+  // Data Processing Module
+  private async processData(data: CombinedData): Promise<string> {
     console.log("Processing data...");
-    return Promise.resolve({});
+
+    let aiFormattedData = "";
+
+    // Add system prompt
+    aiFormattedData += "## Algonius Trading System\n";
+    aiFormattedData += "Analyze the following market data and suggest a trading action.\n\n";
+
+    // Add user's trading strategy (replace with actual strategy)
+    aiFormattedData += "**User's Trading Strategy:**\n";
+    aiFormattedData += " - Buy when the price is below the 20-day moving average.\n";
+    aiFormattedData += " - Sell when the price is above the 20-day moving average.\n\n";
+
+    // Add data from each source
+    for (const source in data) {
+      aiFormattedData += `**Data from ${source}:**\n`;
+      aiFormattedData += data[source].getAIFormattedData();
+      aiFormattedData += "\n\n";
+    }
+
+    return aiFormattedData;
   }
+
 
   // Trade Execution Module (Placeholder)
   private async executeTrade(signal: TradeSignal): Promise<void> {
@@ -39,7 +68,11 @@ export class Algonius {
   // Core logic that runs at each timer interval
   private async run(): Promise<void> {
     try {
-      const data = await this.collectDataFromDEXes();
+      const now = new Date();
+      const formattedDate = now.toLocaleString('zh-CN', { hour12: false });
+      console.log(`Algonius running at ${formattedDate}`);
+       
+      const data = await this.collectData();
       const processedData = await this.processData(data);
       const signal = await this.generateTradeSignal(processedData);
 

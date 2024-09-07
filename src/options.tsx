@@ -14,7 +14,7 @@ const predefinedIntervals = [
 
 
 function IndexOptions() {
-  const [selectedInterval, setSelectedInterval] = useState<number | null>(null);
+  const [selectedInterval, setSelectedInterval] = useState<number | null>(predefinedIntervals[0].value);
   const [customInterval, setCustomInterval] = useState("");
 
   const storage = new Storage();
