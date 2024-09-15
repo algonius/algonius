@@ -5,7 +5,7 @@ window.addEventListener("message", async function (event) {
     window: WindowProxy
   }
  
-  source.window.postMessage(eval(event.data), event.origin)
+  console.log("recive event:", event)
 })
 
 function sendMessage(message) {

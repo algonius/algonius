@@ -5,6 +5,8 @@ export interface AIPlugin {
 }
 
 export interface ScraperPlugin {
+  id: string;
+  scriptUrl: string;
   scrapeData(): Promise<any>;
   formatDataForAI(rawData: any): string;
 }

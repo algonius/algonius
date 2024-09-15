@@ -1,7 +1,6 @@
-import { loadConfig } from './config'
-import { Algonius } from "./algonius";
+import { loadConfig } from '../config'
+import { Algonius } from "../algonius";
 import { Storage } from "@plasmohq/storage";
-import { config } from 'process';
 
 // Function to initialize and start Algonius
 async function initializeAlgonius() {
@@ -14,7 +13,7 @@ async function initializeAlgonius() {
   const algonius = new Algonius(cfg);
 
   // Start Algonius when the extension is loaded
-  algonius.start();
+  await algonius.start();
 
   // Add a message listener to handle start/stop and status requests
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

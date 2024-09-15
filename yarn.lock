@@ -1517,10 +1517,17 @@
   resolved "https://registry.npmjs.org/@plasmohq/init/-/init-0.7.0.tgz#8705db28c3da7e570e8d6f404a4ca1892268d16c"
   integrity sha512-P75g48dqOGneJ+n0AcqnLE/TYflcaPc3B7h6EopnCBBYUDnCNBMwYmKAkaf5pnhsEB0ybPS6TU1C2DTGfqaW7A==
 
-"@plasmohq/parcel-bundler@0.5.5":
-  version "0.5.5"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-bundler/-/parcel-bundler-0.5.5.tgz#ff4d4f2463b418c3c259557a55b37d62b970d6e4"
-  integrity sha512-QCMmmfic514CfdXMJ7JMWUnqDzIHKVKyYeqPpUDsXON6JvA1yTmO5mEQSls8+5u/HpocP9QmTskQOHu3RCNX9A==
+"@plasmohq/messaging@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.npmjs.org/@plasmohq/messaging/-/messaging-0.6.2.tgz#b79f4b18143d4afa2dfbe844bc7ea23f51c90d53"
+  integrity sha512-CGfcvfVE0wsN/Y/i/jV0nwjkwh2gBCEujZFhLoxJ12N0ScoP3JVEIvUxJSFsAD4ylBQ8IjD2FyjQozwiSxWc4Q==
+  dependencies:
+    nanoid "5.0.3"
+
+"@plasmohq/parcel-bundler@0.5.6":
+  version "0.5.6"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-bundler/-/parcel-bundler-0.5.6.tgz#05c6c60c6ecc213ab0ce75f05d7c98981ffe858c"
+  integrity sha512-kjwj5tQUhdAK00AxXOzgqJ2jryZg4X6aleYAcjbREPzVMqKEu1NrNSNy5VGAfNRG6NCT6ZYg39ZCyuUOR2lEsQ==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/diagnostic" "2.9.3"
@@ -1530,17 +1537,17 @@
     "@parcel/utils" "2.9.3"
     nullthrows "1.1.1"
 
-"@plasmohq/parcel-compressor-utf8@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-compressor-utf8/-/parcel-compressor-utf8-0.1.0.tgz#5eb3c3163d0b791a03e08b0fbe5e5bc6656c8c21"
-  integrity sha512-UxljXY+cUVO0ZdszoQRfQjbRjyWYIhGKCjFD48yOcnbSkOZmS5MPPhKrT79x+PMGSK5T6fUXaDjzqbnMb45MZw==
+"@plasmohq/parcel-compressor-utf8@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-compressor-utf8/-/parcel-compressor-utf8-0.1.1.tgz#1a2d2e4926b2d1203264b31cd75727c6717eb041"
+  integrity sha512-9zcF39XIBzauYLERoGNVSy7qR1MzEqjhQn16RrlCpZ1AyNMlBJ3B28SmnUpBQNgne8JOHTtcx6cUVm1IvM3J+g==
   dependencies:
     "@parcel/plugin" "2.9.3"
 
-"@plasmohq/parcel-config@0.41.0":
-  version "0.41.0"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-config/-/parcel-config-0.41.0.tgz#ac52cf89e22ffb46440bb10865c0e1c5fd6a8045"
-  integrity sha512-MHtuEyjSCqVT0J584KF4ZrnNF1KTGz3+0+wEBgYiiWEW+WW91/Hv/5pboBrPH4tu/knxSQjzE9zlY5Rq2xh9Rg==
+"@plasmohq/parcel-config@0.41.1":
+  version "0.41.1"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-config/-/parcel-config-0.41.1.tgz#84ae7f1c4f1f2045eead99909bee753da18a8e5d"
+  integrity sha512-peNpm+F1tVIZmDx8Mca8b3769cxc2IWS7q0+0Y4BLT1+2kis7X4b46IAYgOXtsDRZCb9pvxQhRhrVHpwGtdVLg==
   dependencies:
     "@parcel/compressor-raw" "2.9.3"
     "@parcel/config-default" "2.9.3"
@@ -1563,25 +1570,25 @@
     "@parcel/transformer-sass" "2.9.3"
     "@parcel/transformer-svg-react" "2.9.3"
     "@parcel/transformer-worklet" "2.9.3"
-    "@plasmohq/parcel-bundler" "0.5.5"
-    "@plasmohq/parcel-compressor-utf8" "0.1.0"
+    "@plasmohq/parcel-bundler" "0.5.6"
+    "@plasmohq/parcel-compressor-utf8" "0.1.1"
     "@plasmohq/parcel-namer-manifest" "0.3.12"
-    "@plasmohq/parcel-optimizer-encapsulate" "0.0.7"
-    "@plasmohq/parcel-optimizer-es" "0.4.0"
-    "@plasmohq/parcel-packager" "0.6.14"
-    "@plasmohq/parcel-resolver" "0.14.0"
-    "@plasmohq/parcel-resolver-post" "0.4.4"
-    "@plasmohq/parcel-runtime" "0.25.0"
-    "@plasmohq/parcel-transformer-inject-env" "0.2.11"
+    "@plasmohq/parcel-optimizer-encapsulate" "0.0.8"
+    "@plasmohq/parcel-optimizer-es" "0.4.1"
+    "@plasmohq/parcel-packager" "0.6.15"
+    "@plasmohq/parcel-resolver" "0.14.1"
+    "@plasmohq/parcel-resolver-post" "0.4.5"
+    "@plasmohq/parcel-runtime" "0.25.1"
+    "@plasmohq/parcel-transformer-inject-env" "0.2.12"
     "@plasmohq/parcel-transformer-inline-css" "0.3.11"
-    "@plasmohq/parcel-transformer-manifest" "0.19.0"
+    "@plasmohq/parcel-transformer-manifest" "0.20.1"
     "@plasmohq/parcel-transformer-svelte" "0.6.0"
     "@plasmohq/parcel-transformer-vue" "0.5.0"
 
-"@plasmohq/parcel-core@0.1.8":
-  version "0.1.8"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-core/-/parcel-core-0.1.8.tgz#d532ff3e9d6745fd01293a8b677382c3d39c9a6f"
-  integrity sha512-kMWuazvf925ZAn2yHzzrb4Zsje1titFmvi/C5cXrI0TH58eT7n6GUiRXiOYP4JgGDHs/pEygx3WPuyWVTNF2HQ==
+"@plasmohq/parcel-core@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-core/-/parcel-core-0.1.9.tgz#d6a3ad736f86f4da5ffc37ceb57f91e36c3acef3"
+  integrity sha512-xuWfArWo4O9+RCb8mdvxf+hFH5lldLnufXGFCXnqBMGvL/A/l1NvQjXjVKYoTnPeX+9iZd534rb/7v49BPayCg==
   dependencies:
     "@parcel/cache" "2.9.3"
     "@parcel/core" "2.9.3"
@@ -1611,32 +1618,32 @@
     "@parcel/types" "2.9.3"
     "@parcel/utils" "2.9.3"
 
-"@plasmohq/parcel-optimizer-encapsulate@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-optimizer-encapsulate/-/parcel-optimizer-encapsulate-0.0.7.tgz#200d8d64c3c21cbcbd9e852b559851e752d8d6b1"
-  integrity sha512-mA9kY5dwuebQ4vLX6A5yTFo0gZZNWKUHpF6yO0lYq3oP843MyRJS8SxAtzQb4vTlVWPk3SX6Yw81DgBo4I6Xiw==
+"@plasmohq/parcel-optimizer-encapsulate@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-optimizer-encapsulate/-/parcel-optimizer-encapsulate-0.0.8.tgz#2820cfa845bd94386ab9725399fdc3d6ecd5d4f2"
+  integrity sha512-iXDXoLtYBvV4rHhFw3O6nrS3dEWYe9k2m0i/Tvzg2lz4lUHFyvK5NN9RWqkOLfI8JviaqQzaaMKteJhLsX6z1A==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/plugin" "2.9.3"
     "@parcel/source-map" "2.1.1"
     "@parcel/types" "2.9.3"
 
-"@plasmohq/parcel-optimizer-es@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-optimizer-es/-/parcel-optimizer-es-0.4.0.tgz#7a1ff796c642bbde7e82996d37433e190c6d0425"
-  integrity sha512-Iz1cTuw38wEbSQ36/dVKh5MyRA12/Ecrx90pqaIkoqA9ZSZuxuWWa7rPa3bVMFkzi28BpVHW1z9EnhVN4188kQ==
+"@plasmohq/parcel-optimizer-es@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-optimizer-es/-/parcel-optimizer-es-0.4.1.tgz#7f8cd575180b3573aa7039e494158798b3209086"
+  integrity sha512-2FvBq3L5wHyD+TNHpO0IVMJKX1XQ+uBruFVcRUgo+lDkIAyop7P8wpsY4iq3dOKXJrqjwBop9nzNcq0L/zaalQ==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/plugin" "2.9.3"
     "@parcel/source-map" "2.1.1"
     "@parcel/utils" "2.9.3"
-    "@swc/core" "1.3.82"
+    "@swc/core" "1.3.96"
     nullthrows "1.1.1"
 
-"@plasmohq/parcel-packager@0.6.14":
-  version "0.6.14"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-packager/-/parcel-packager-0.6.14.tgz#8a450408366ae4d6e8e2361f8947504cb44f249c"
-  integrity sha512-pFab9COfafx66CtOFWgLgKf4TUPLb5EiTO4ecRz1HDINSvPl48ci+3czmtSzOI4+b1uiqZYxUB3eeaMfh9XWpA==
+"@plasmohq/parcel-packager@0.6.15":
+  version "0.6.15"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-packager/-/parcel-packager-0.6.15.tgz#2203c764921868d15cbc3592858c03d8ee9e21da"
+  integrity sha512-c6Afk5l8EqxyZ/N7p8avWEBt5teTQPQsvZZpPHWhsAY9eonX+h8bFdmXym1oevaq5TySJOpNCSUdTvqqZtlSnQ==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/plugin" "2.9.3"
@@ -1644,10 +1651,10 @@
     "@parcel/utils" "2.9.3"
     nullthrows "1.1.1"
 
-"@plasmohq/parcel-resolver-post@0.4.4":
-  version "0.4.4"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-resolver-post/-/parcel-resolver-post-0.4.4.tgz#501a722b347497de893080ffb0c19956d62c281e"
-  integrity sha512-n39U5z2aGAfCDFydpvEDXx0MWtqYwh0+aX4QS49/IsmZMM1Ra+GnHs/gfeJz0jtN83EytlbwSoDcXRkORx9rIQ==
+"@plasmohq/parcel-resolver-post@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-resolver-post/-/parcel-resolver-post-0.4.5.tgz#88503b0722702c220f99a867925c12a565dec691"
+  integrity sha512-Y5la9wruh3fMHlUoWtVBcbSyvg2xZE1kSRp5BAjtfyZlKS2cT/vIbFTUkqk9nPvXLExBDNajIxTKk9ag/9WzpA==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/hash" "2.9.3"
@@ -1657,10 +1664,10 @@
     tsup "7.2.0"
     typescript "5.2.2"
 
-"@plasmohq/parcel-resolver@0.14.0":
-  version "0.14.0"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-resolver/-/parcel-resolver-0.14.0.tgz#5d985854c4df202dba434164a5940bc3c3484a7e"
-  integrity sha512-OPGFiv2SxDEJl9sNPKfjkQ3QaqKOzSDx8E85Bq9FCOKCj+EWTPfoeUOAuMkHY/ArcvDBhWAo3Zu66f2U7iPEGQ==
+"@plasmohq/parcel-resolver@0.14.1":
+  version "0.14.1"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-resolver/-/parcel-resolver-0.14.1.tgz#26315e25c6492348620a9c0d92c83451d257c72a"
+  integrity sha512-1nmmMI7N5rtpni2TpUyPkI8XU1wIk/lTDGNZXLxtkzOoFiFP2sc2xZq4OGhmnRYvWphZYrnhMjRrjNJmqOFqxw==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/hash" "2.9.3"
@@ -1670,20 +1677,20 @@
     fs-extra "11.1.1"
     got "13.0.0"
 
-"@plasmohq/parcel-runtime@0.25.0":
-  version "0.25.0"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-runtime/-/parcel-runtime-0.25.0.tgz#d671ca10ea14efc6708956e4a2a2b37061d47b9c"
-  integrity sha512-jtb77WDCYhKDPi/jRweSNX9GEe/REQUQU50d18YkDpQDyo/enVTyWVeYqfo3Q21iGLX8x9E5nF2rXtIVtoOAmw==
+"@plasmohq/parcel-runtime@0.25.1":
+  version "0.25.1"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-runtime/-/parcel-runtime-0.25.1.tgz#2211c75e2366ebf05cca9cb74ecd5692cb59210c"
+  integrity sha512-asr4DMXJSKPilye0uiyZf51NUC3WZAr0Y6mzl+mtRGIcywuv42+X52qnZl9a9xYkVZeYlVJq62Kfk4+wPthakg==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/plugin" "2.9.3"
     "@types/trusted-types" "2.0.7"
     react-refresh "0.14.0"
 
-"@plasmohq/parcel-transformer-inject-env@0.2.11":
-  version "0.2.11"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-transformer-inject-env/-/parcel-transformer-inject-env-0.2.11.tgz#311d7a019f9b754452e72d33a9744725a292f65d"
-  integrity sha512-eGwwoaDbPPwrRcEgOi/BpLVGe5ttrBhs91NBcKMpE/D5gktfbJPD1zHG8MPtQdE4Iq23aG3JUbiT5clmdwtUhQ==
+"@plasmohq/parcel-transformer-inject-env@0.2.12":
+  version "0.2.12"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-transformer-inject-env/-/parcel-transformer-inject-env-0.2.12.tgz#da6d031111ac58d5ca8105b6596947951166b55d"
+  integrity sha512-QhM5Je0LyuAAJMAXeBEu4YvDirIPXuO2SoxHkwTMIwCMXpstPinnKiElrIoolqZjcxLmDCfsXerXZfbN6NhSlA==
   dependencies:
     "@parcel/core" "2.9.3"
     "@parcel/plugin" "2.9.3"
@@ -1700,10 +1707,10 @@
     browserslist "4.22.1"
     lightningcss "1.21.8"
 
-"@plasmohq/parcel-transformer-manifest@0.19.0":
-  version "0.19.0"
-  resolved "https://registry.npmjs.org/@plasmohq/parcel-transformer-manifest/-/parcel-transformer-manifest-0.19.0.tgz#45c8e3d13c7aed6cbad5ccfe8a956febcdfc4f76"
-  integrity sha512-cDmca0jPVFVnRQPqCWcsPPwre27/yAGxSF1+JmPVUeXZYMCrg5wdNepRDSw+/dDBO2VmNHh/Tv+Hgj1fLIM8CQ==
+"@plasmohq/parcel-transformer-manifest@0.20.1":
+  version "0.20.1"
+  resolved "https://registry.npmjs.org/@plasmohq/parcel-transformer-manifest/-/parcel-transformer-manifest-0.20.1.tgz#a15afd8436a959002fb5e9235ad1e2c582d7eb4c"
+  integrity sha512-fA2d+u7eAURr8Vyi1HAB8zwndBW2czi5YcLgZRVwEqHODYYIyNcmqMJHLt7TAQYTD+POG+z4WpM81AKdhcq8mg==
   dependencies:
     "@mischnic/json-sourcemap" "0.1.0"
     "@parcel/core" "2.9.3"
@@ -1870,123 +1877,124 @@
     deepmerge "^4.2.2"
     svgo "^2.8.0"
 
-"@swc/core-darwin-arm64@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.3.82.tgz#bbf9874747b51053d8a59ea26c3e235c326f24a3"
-  integrity sha512-JfsyDW34gVKD3uE0OUpUqYvAD3yseEaicnFP6pB292THtLJb0IKBBnK50vV/RzEJtc1bR3g1kNfxo2PeurZTrA==
+"@swc/core-darwin-arm64@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.3.96.tgz#7c1c4245ce3f160a5b36a48ed071e3061a839e1d"
+  integrity sha512-8hzgXYVd85hfPh6mJ9yrG26rhgzCmcLO0h1TIl8U31hwmTbfZLzRitFQ/kqMJNbIBCwmNH1RU2QcJnL3d7f69A==
 
 "@swc/core-darwin-arm64@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.7.23.tgz#4ba141f07ba9b90cfc153582cbd874ebb11542fb"
   integrity sha512-yyOHPfti6yKlQulfVWMt7BVKst+SyEZYCWuQSGMn1KgmNCH/bYufRWfQXIhkGSj44ZkEepJmsJ8tDyIb4k5WyA==
 
-"@swc/core-darwin-x64@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-x64/-/core-darwin-x64-1.3.82.tgz#145cdde16678e0d793620035783e5b413a16ac43"
-  integrity sha512-ogQWgNMq7qTpITjcP3dnzkFNj7bh6SwMr859GvtOTrE75H7L7jDWxESfH4f8foB/LGxBKiDNmxKhitCuAsZK4A==
+"@swc/core-darwin-x64@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-darwin-x64/-/core-darwin-x64-1.3.96.tgz#4720ff897ca3f22fe77d0be688968161480c80f0"
+  integrity sha512-mFp9GFfuPg+43vlAdQZl0WZpZSE8sEzqL7sr/7Reul5McUHP0BaLsEzwjvD035ESfkY8GBZdLpMinblIbFNljQ==
 
 "@swc/core-darwin-x64@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-darwin-x64/-/core-darwin-x64-1.7.23.tgz#09083175361340066c51303e24577c2bfd20c445"
   integrity sha512-GzqHwQ0Y1VyjdI/bBKFX2GKm5HD3PIB6OhuAQtWZMTtEr2yIrlT0YK2T+XKh7oIg31JwxGBeQdBk3KTI7DARmQ==
 
-"@swc/core-linux-arm-gnueabihf@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-linux-arm-gnueabihf/-/core-linux-arm-gnueabihf-1.3.82.tgz#0c2f32c5793f2ac8e8ccf416aec84d016c30ef7b"
-  integrity sha512-7TMXG1lXlNhD0kUiEqs+YlGV4irAdBa2quuy+XI3oJf2fBK6dQfEq4xBy65B3khrorzQS3O0oDGQ+cmdpHExHA==
+"@swc/core-linux-arm-gnueabihf@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-linux-arm-gnueabihf/-/core-linux-arm-gnueabihf-1.3.96.tgz#2c238ae00b13918ac058b132a31dc57dbcf94e39"
+  integrity sha512-8UEKkYJP4c8YzYIY/LlbSo8z5Obj4hqcv/fUTHiEePiGsOddgGf7AWjh56u7IoN/0uEmEro59nc1ChFXqXSGyg==
 
 "@swc/core-linux-arm-gnueabihf@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-linux-arm-gnueabihf/-/core-linux-arm-gnueabihf-1.7.23.tgz#6295056530c4620c868889099c26cb183ee99e3d"
   integrity sha512-qwX4gB41OS6/OZkHcpTqLFGsdmvoZyffnJIlgB/kZKwH3lfeJWzv6vx57zXtNpM/t7GoQEe0VZUVdmNjxSxBZw==
 
-"@swc/core-linux-arm64-gnu@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-gnu/-/core-linux-arm64-gnu-1.3.82.tgz#2313d4901fa0ebdd2a0f189909073e1e8a07f1d6"
-  integrity sha512-26JkOujbzcItPAmIbD5vHJxQVy5ihcSu3YHTKwope1h28sApZdtE7S3e2G3gsZRTIdsCQkXUtAQeqHxGWWR3pw==
+"@swc/core-linux-arm64-gnu@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-gnu/-/core-linux-arm64-gnu-1.3.96.tgz#be2e84506b9761b561fb9a341e587f8594a8e55d"
+  integrity sha512-c/IiJ0s1y3Ymm2BTpyC/xr6gOvoqAVETrivVXHq68xgNms95luSpbYQ28rqaZC8bQC8M5zdXpSc0T8DJu8RJGw==
 
 "@swc/core-linux-arm64-gnu@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-linux-arm64-gnu/-/core-linux-arm64-gnu-1.7.23.tgz#b25a298883bc3e71faebc485ce9c0ac49808f975"
   integrity sha512-TsrbUZdMaUwzI7+g/8rHPLWbntMKYSu5Bn5IBSqVKPeyqaXxNnlIUnWXgXcUcRAc+T+Y8ADfr7EiFz9iz5DuSA==
 
-"@swc/core-linux-arm64-musl@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.3.82.tgz#6e96cf6e52e647fecf27511d766bea90e96f8a2f"
-  integrity sha512-8Izj9tuuMpoc3cqiPBRtwqpO1BZ/+sfZVsEhLxrbOFlcSb8LnKyMle1g3JMMUwI4EU75RGVIzZMn8A6GOKdJbA==
+"@swc/core-linux-arm64-musl@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.3.96.tgz#22c9ce17bd923ae358760e668ca33c90210c2ae5"
+  integrity sha512-i5/UTUwmJLri7zhtF6SAo/4QDQJDH2fhYJaBIUhrICmIkRO/ltURmpejqxsM/ye9Jqv5zG7VszMC0v/GYn/7BQ==
 
 "@swc/core-linux-arm64-musl@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-linux-arm64-musl/-/core-linux-arm64-musl-1.7.23.tgz#4b528e5d3cdba87a6bca420e9d7fe388ae2e5e7f"
   integrity sha512-JEdtwdthazKq4PBz53KSubwwK8MvqODAihGSAzc8u3Unq4ojcvaS8b0CwLBeD+kTQ78HpxOXTt3DsFIxpgaCAA==
 
-"@swc/core-linux-x64-gnu@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.3.82.tgz#6275c10d7c8c0768550bc7934c9dd8cde4881d92"
-  integrity sha512-0GSrIBScQwTaPv46T2qB7XnDYxndRCpwH4HMjh6FN+I+lfPUhTSJKW8AonqrqT1TbpFIgvzQs7EnTsD7AnSCow==
+"@swc/core-linux-x64-gnu@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.3.96.tgz#c17c072e338341c0ac3507a31ab2a36d16d79c98"
+  integrity sha512-USdaZu8lTIkm4Yf9cogct/j5eqtdZqTgcTib4I+NloUW0E/hySou3eSyp3V2UAA1qyuC72ld1otXuyKBna0YKQ==
 
 "@swc/core-linux-x64-gnu@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-linux-x64-gnu/-/core-linux-x64-gnu-1.7.23.tgz#eded88bbd3f8acde4375a016b858f6a93781d690"
   integrity sha512-V51gFPWaVAHbI1yg9ahsoya3aB4uawye3SZ5uQWgcP7wdCdiv60dw4F5nuPJf5Z1oXD3U/BslXuamv8Oh9vXqQ==
 
-"@swc/core-linux-x64-musl@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.3.82.tgz#edb98c30bd0de42bf1a63469937630d942c71988"
-  integrity sha512-KJUnaaepDKNzrEbwz4jv0iC3/t9x0NSoe06fnkAlhh2+NFKWKKJhVCOBTrpds8n7eylBDIXUlK34XQafjVMUdg==
+"@swc/core-linux-x64-musl@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.3.96.tgz#eb74594a48b4e9cabdce7f5525b3b946f8d6dd16"
+  integrity sha512-QYErutd+G2SNaCinUVobfL7jWWjGTI0QEoQ6hqTp7PxCJS/dmKmj3C5ZkvxRYcq7XcZt7ovrYCTwPTHzt6lZBg==
 
 "@swc/core-linux-x64-musl@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-linux-x64-musl/-/core-linux-x64-musl-1.7.23.tgz#28c06eb3709c2a170ba8a6de5ea6aa8b30fc2c43"
   integrity sha512-BBqQi4+UdeRqag3yM4IJjaHG4yc1o3l9ksENHToE0o/u2DT0FY5+K/DiYGZLC1JHbSFzNqRCYsa7DIzRtZ0A1A==
 
-"@swc/core-win32-arm64-msvc@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-win32-arm64-msvc/-/core-win32-arm64-msvc-1.3.82.tgz#0a8e9b361aac37d01f684c8a3d3e94e5f8c3b14f"
-  integrity sha512-TR3MHKhDYIyGyFcyl2d/p1ftceXcubAhX5wRSOdtOyr5+K/v3jbyCCqN7bbqO5o43wQVCwwR/drHleYyDZvg8Q==
+"@swc/core-win32-arm64-msvc@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-win32-arm64-msvc/-/core-win32-arm64-msvc-1.3.96.tgz#6f7c0d20d80534b0676dc6761904288c16e93857"
+  integrity sha512-hjGvvAduA3Un2cZ9iNP4xvTXOO4jL3G9iakhFsgVhpkU73SGmK7+LN8ZVBEu4oq2SUcHO6caWvnZ881cxGuSpg==
 
 "@swc/core-win32-arm64-msvc@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-win32-arm64-msvc/-/core-win32-arm64-msvc-1.7.23.tgz#f7242c9f623145e6475ff5687102a5386560e247"
   integrity sha512-JPk6pvCKncL6bXG7p+NLZf8PWx4FakVvKNdwGeMrYunb+yk1IZf7qf9LJk8+GDGF5QviDXPs8opZrTrfsW80fA==
 
-"@swc/core-win32-ia32-msvc@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-win32-ia32-msvc/-/core-win32-ia32-msvc-1.3.82.tgz#096854ff764282766271f1354ee1214358a8bf01"
-  integrity sha512-ZX4HzVVt6hs84YUg70UvyBJnBOIspmQQM0iXSzBvOikk3zRoN7BnDwQH4GScvevCEBuou60+i4I6d5kHLOfh8Q==
+"@swc/core-win32-ia32-msvc@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-win32-ia32-msvc/-/core-win32-ia32-msvc-1.3.96.tgz#47bb24ef2e4c81407a6786649246983cc69e7854"
+  integrity sha512-Far2hVFiwr+7VPCM2GxSmbh3ikTpM3pDombE+d69hkedvYHYZxtTF+2LTKl/sXtpbUnsoq7yV/32c9R/xaaWfw==
 
 "@swc/core-win32-ia32-msvc@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-win32-ia32-msvc/-/core-win32-ia32-msvc-1.7.23.tgz#619346c6a0c859b6a16dbbf6b89a6f48c7d148a6"
   integrity sha512-2Whxi8d+bLQBzJcQ5qYPHlk02YYVGsMVav0fWk+FnX2z1QRREIu1L1xvrpi7gBpjXp6BIU40ya8GiKeekNT2bg==
 
-"@swc/core-win32-x64-msvc@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.3.82.tgz#1181070bff4a13a7fcc7f1020eef1571f8c1257a"
-  integrity sha512-4mJMnex21kbQoaHeAmHnVwQN9/XAfPszJ6n9HI7SVH+aAHnbBIR0M59/b50/CJMjTj5niUGk7EwQ3nhVNOG32g==
+"@swc/core-win32-x64-msvc@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.3.96.tgz#c796e3df7afe2875d227c74add16a7d09c77d8bd"
+  integrity sha512-4VbSAniIu0ikLf5mBX81FsljnfqjoVGleEkCQv4+zRlyZtO3FHoDPkeLVoy6WRlj7tyrRcfUJ4mDdPkbfTO14g==
 
 "@swc/core-win32-x64-msvc@1.7.23":
   version "1.7.23"
   resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.7.23.tgz#fa7c87db0753e727cc1c167f6dc99ca55c9677df"
   integrity sha512-82fARk4/yJ40kwWKY/gdKDisPdtgJE9jgpl/vkNG3alyJxrCzuNM7+CtiKoYbXLeqM8GQTS3wlvCaJu9oQ8dag==
 
-"@swc/core@1.3.82":
-  version "1.3.82"
-  resolved "https://registry.npmjs.org/@swc/core/-/core-1.3.82.tgz#8f6c53db3c23a1769b6c5085fbcb3b1df9548a40"
-  integrity sha512-jpC1a18HMH67018Ij2jh+hT7JBFu7ZKcQVfrZ8K6JuEY+kjXmbea07P9MbQUZbAe0FB+xi3CqEVCP73MebodJQ==
+"@swc/core@1.3.96":
+  version "1.3.96"
+  resolved "https://registry.npmjs.org/@swc/core/-/core-1.3.96.tgz#f04d58b227ceed2fee6617ce2cdddf21d0803f96"
+  integrity sha512-zwE3TLgoZwJfQygdv2SdCK9mRLYluwDOM53I+dT6Z5ZvrgVENmY3txvWDvduzkV+/8IuvrRbVezMpxcojadRdQ==
   dependencies:
-    "@swc/types" "^0.1.4"
+    "@swc/counter" "^0.1.1"
+    "@swc/types" "^0.1.5"
   optionalDependencies:
-    "@swc/core-darwin-arm64" "1.3.82"
-    "@swc/core-darwin-x64" "1.3.82"
-    "@swc/core-linux-arm-gnueabihf" "1.3.82"
-    "@swc/core-linux-arm64-gnu" "1.3.82"
-    "@swc/core-linux-arm64-musl" "1.3.82"
-    "@swc/core-linux-x64-gnu" "1.3.82"
-    "@swc/core-linux-x64-musl" "1.3.82"
-    "@swc/core-win32-arm64-msvc" "1.3.82"
-    "@swc/core-win32-ia32-msvc" "1.3.82"
-    "@swc/core-win32-x64-msvc" "1.3.82"
+    "@swc/core-darwin-arm64" "1.3.96"
+    "@swc/core-darwin-x64" "1.3.96"
+    "@swc/core-linux-arm-gnueabihf" "1.3.96"
+    "@swc/core-linux-arm64-gnu" "1.3.96"
+    "@swc/core-linux-arm64-musl" "1.3.96"
+    "@swc/core-linux-x64-gnu" "1.3.96"
+    "@swc/core-linux-x64-musl" "1.3.96"
+    "@swc/core-win32-arm64-msvc" "1.3.96"
+    "@swc/core-win32-ia32-msvc" "1.3.96"
+    "@swc/core-win32-x64-msvc" "1.3.96"
 
 "@swc/core@^1.3.36":
   version "1.7.23"
@@ -2007,7 +2015,7 @@
     "@swc/core-win32-ia32-msvc" "1.7.23"
     "@swc/core-win32-x64-msvc" "1.7.23"
 
-"@swc/counter@^0.1.3":
+"@swc/counter@^0.1.1", "@swc/counter@^0.1.3":
   version "0.1.3"
   resolved "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz#cc7463bd02949611c6329596fccd2b0ec782b0e9"
   integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
@@ -2019,7 +2027,7 @@
   dependencies:
     tslib "^2.4.0"
 
-"@swc/types@^0.1.12", "@swc/types@^0.1.4":
+"@swc/types@^0.1.12", "@swc/types@^0.1.5":
   version "0.1.12"
   resolved "https://registry.npmjs.org/@swc/types/-/types-0.1.12.tgz#7f632c06ab4092ce0ebd046ed77ff7557442282f"
   integrity sha512-wBJA+SdtkbFhHjTMYH+dEH1y4VpfGdAc2Kw/LK09i9bXd/K6j6PkDcFCEzb6iVfZMkPRrl/q0e3toqTAJdkIVA==
@@ -4122,6 +4130,11 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
+nanoid@5.0.3:
+  version "5.0.3"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-5.0.3.tgz#6c97f53d793a7a1de6a38ebb46f50f95bf9793c7"
+  integrity sha512-I7X2b22cxA4LIHXPSqbBCEQSL+1wv8TuoefejsX4HFWyC6jc5JG7CEaxOltiKjc1M+YCS2YkrZZcj4+dytw9GA==
+
 nanoid@^3.3.7:
   version "3.3.7"
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz#d0c301a691bc8d54efa0a2226ccf3fe2fd656bd8"
@@ -4423,10 +4436,10 @@ pirates@^4.0.1:
   resolved "https://registry.npmjs.org/pirates/-/pirates-4.0.6.tgz#3018ae32ecfcff6c29ba2267cbf21166ac1f36b9"
   integrity sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==
 
-plasmo@0.89.1:
-  version "0.89.1"
-  resolved "https://registry.npmjs.org/plasmo/-/plasmo-0.89.1.tgz#8b7620f1af0ddc3174fb1b2d2552072f4b057efe"
-  integrity sha512-YBSi9QeXYo9UDcbpgNI+FBC19iWs9C66ucyZpop0MaW5rc+uv/6HHzINkw+NL2izfJ8bdEU0l3iCLhpBmeKP2A==
+plasmo@0.89.2:
+  version "0.89.2"
+  resolved "https://registry.npmjs.org/plasmo/-/plasmo-0.89.2.tgz#1d3d13d682afb74218f3de7fff73b02de8e743e4"
+  integrity sha512-pYiXi/z8F2LUXMTHNlaoqHVELs7EUFwJVrdga1G3FSPezU77w5QiYE7JrICVIi+rZX41lEokEJQN/P5/BdedGg==
   dependencies:
     "@expo/spawn-async" "1.7.2"
     "@parcel/core" "2.9.3"
@@ -4434,8 +4447,8 @@ plasmo@0.89.1:
     "@parcel/package-manager" "2.9.3"
     "@parcel/watcher" "2.2.0"
     "@plasmohq/init" "0.7.0"
-    "@plasmohq/parcel-config" "0.41.0"
-    "@plasmohq/parcel-core" "0.1.8"
+    "@plasmohq/parcel-config" "0.41.1"
+    "@plasmohq/parcel-core" "0.1.9"
     buffer "6.0.3"
     chalk "5.3.0"
     change-case "5.1.2"

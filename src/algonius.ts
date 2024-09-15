@@ -1,4 +1,4 @@
-import { AppConfig } from "./config";
+import { AppConfig, PluginConfig } from "./config";
 import { TradeSignal } from "./types";
 import { Agent } from "./modules/ai-decision";
 import { PluginManager, ScraperPlugin } from "./plugins";
@@ -31,6 +31,7 @@ export class Algonius {
       
       // Get active scrapers from the plugin manager
       const activeScrapers = this.pluginManager.getActivePluginsOfType('scraper') as ScraperPlugin[];
+      console.log(`activeScrapers:`, activeScrapers);
 
       // Collect data from active scrapers
       const dataPromises = activeScrapers.map(scraper => scraper.scrapeData());
@@ -54,10 +55,16 @@ export class Algonius {
   }
 
   // Start the system
-  public start(): void {
-    if (this.timerId === null) {
-      this.timerId = setInterval(this.run.bind(this), this.interval);
-      console.log("Algonius started.");
+  public async start(): Promise<void>  {
+    try {
+      await this.agent.start(); // Start the AI agent
+
+      if (this.timerId === null) {
+        this.timerId = setInterval(this.run.bind(this), this.interval);
+        console.log("Algonius started.");
+      }
+    } catch (error) {
+      console.error("Error starting Algonius:", error);
     }
   }
 
@@ -68,6 +75,8 @@ export class Algonius {
       this.timerId = null;
       console.log("Algonius stopped.");
     }
+
+    this.agent.stop(); // Stop the AI agent
   }
 
   public isRunning(): boolean {

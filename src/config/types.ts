@@ -11,10 +11,13 @@ export interface PluginConfig {
   name: string;
   type: "ai" | "scraper";
   source: "built-in" | "third-party"; 
-  scriptUrl: string; // Can be a remote URL or a GitHub repo URL with tag/branch/commit
+  sandboxPath?: string;
+  scriptUrl?: string; // Can be a remote URL or a GitHub repo URL with tag/branch/commit
+  github?: string; // Can be a remote URL or a GitHub repo URL with tag/branch/commit
 }
 
 export interface AppConfig {
   interval: number; // Algonius running interval in milliseconds
   ai: AIConfig; 
+  plugins: Array<PluginConfig>
 }

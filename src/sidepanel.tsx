@@ -1,18 +1,41 @@
 // src/sidepanel.tsx
 import { useState, useEffect, useRef } from "react";
+import { PluginConfig, useConfig } from "~config";
 
 function IndexSidePanel() {
   const [data, setData] = useState("");
+  const config = useConfig();
   const iframeRefs = useRef<{ [id: string]: HTMLIFrameElement }>({});
 
   useEffect(() => {
     // Fetch the list of plugins (replace with your actual plugin loading logic)
-    const plugins = [
-      { id: "plugin1", url: "plugins/plugin1.js" },
-      { id: "plugin2", url: "plugins/plugin2.js" },
-    ];
+    const builtInPlugins = config.plugins.filter(
+      (plugin) => plugin.source === "built-in"
+    ) as PluginConfig[];
 
-    plugins.forEach((plugin) => {
+    builtInPlugins.forEach((plugin) => {
+      // Create an iframe for each plugin
+      const iframe = document.createElement("iframe");
+      iframe.src = plugin.sandboxPath; // Path to the sandbox HTML
+      iframe.id = plugin.id; // Set the iframe ID for later communication
+      document.body.appendChild(iframe);
+
+      // Store the iframe reference
+      iframeRefs.current[plugin.id] = iframe;
+
+      // Load the plugin script into the iframe
+      iframe.contentWindow?.postMessage(
+        { type: "init" },
+        "*"
+      );
+    });
+
+    // Fetch the list of plugins (replace with your actual plugin loading logic)
+    const thirdPartyPlugins = config.plugins.filter(
+      (plugin) => plugin.source === "third-party"
+    ) as PluginConfig[];
+
+    thirdPartyPlugins.forEach((plugin) => {
       // Create an iframe for each plugin
       const iframe = document.createElement("iframe");
       iframe.src = "sandboxes/plugin_sandbox.html"; // Path to the sandbox HTML
@@ -24,7 +47,7 @@ function IndexSidePanel() {
 
       // Load the plugin script into the iframe
       iframe.contentWindow?.postMessage(
-        { type: "loadPlugin", url: plugin.url },
+        { type: "loadPlugin", url: plugin.scriptUrl },
         "*"
       );
     });
@@ -35,7 +58,7 @@ function IndexSidePanel() {
         document.body.removeChild(iframe);
       });
     };
-  }, []);
+  }, [config]);
 
   return (
     <div
