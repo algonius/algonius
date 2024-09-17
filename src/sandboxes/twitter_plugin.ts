@@ -1,5 +1,7 @@
 // src/sandboxes/twitter_plugin.ts
-export const life = 42;
+import { MessageProxy } from "~utils/messaging";
+
+const messageProxy = new MessageProxy();
 
 window.addEventListener("message", async function (event) {
   const source = event.source as {
@@ -66,35 +68,60 @@ window.addEventListener("message", async function (event) {
       });
     }
   }
+
+  else if (event.data.type === "response") {
+    messageProxy.replyMessage(event.data);
+  }
 });
 
 function sendMessage(message: any) {
   window.parent.postMessage(message, "*");
 }
 
-// Function to simulate scraping Twitter data (replace with actual scraping logic)
-async function scrapeTwitterData(): Promise<any> {
-  // Simulate fetching trending topics from Twitter
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        { topic: "Algonius", tweets: 1000 },
-        { topic: "Crypto", tweets: 5000 },
-        { topic: "Web3", tweets: 2000 },
-      ]);
-    }, 10); // Simulate a 10ms delay
+// Function to send HTTP request through Algonius API
+async function sendHttpRequest(url: string, options: RequestInit = {}, tabUrl?: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    messageProxy.sendMessageToParent({
+      type: "apiCall",
+      apiData: {
+        path: "/http/sendHttpRequest",
+        params: { url, requestOptions: options, tabUrl },
+      },
+    }, (response) => {
+      if (response.success) {
+        resolve(response.data);
+      } else {
+        reject(new Error(response.error));
+      }
+    });
   });
 }
 
-// Function to simulate scraping Twitter data (replace with actual scraping logic)
-async function formatDataForAI(data: any): Promise<string> {
-  // Simulate fetching trending topics from Twitter
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const formattedString = data
-        .map((topicData) => `Trending topic: ${topicData.topic} (Tweets: ${topicData.tweets})`)
-        .join("\n");
-      resolve(formattedString);
-    }, 1);
-  });
+// Function to scrape Twitter data for BTC news
+async function scrapeTwitterData(): Promise<any> {
+  try {
+    const apiUrl = "https://api.twitter.com/2/tweets/search/recent?query=BTC news&max_results=5";
+    const tabUrl = "https://twitter.com"; // The actual Twitter website URL
+    const options = {
+      headers: {
+        "Authorization": "Bearer YOUR_TWITTER_API_BEARER_TOKEN",
+        "Content-Type": "application/json"
+      }
+    };
+    const response = await sendHttpRequest(apiUrl, options, tabUrl);
+    
+    const data = JSON.parse(response);
+    return data.data.map(tweet => tweet.text);
+  } catch (error) {
+    console.error("Error fetching Twitter data:", error);
+    throw error;
+  }
 }
+
+// Function to format scraped data for AI processing
+async function formatDataForAI(data: string[]): Promise<string> {
+  const formattedTweets = data.map((tweet, index) => `Tweet ${index + 1}: ${tweet}`).join('\n\n');
+  return `Latest BTC news from Twitter:\n\n${formattedTweets}`;
+}
+
+export const life = 42;

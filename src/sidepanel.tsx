@@ -27,10 +27,14 @@ function IndexSidePanel() {
         console.log("sidepanel receive event from iframe:", event);
 
         // Forward the register message to the background script
-        chrome.runtime.sendMessage({
-          type: "pluginResponse",
-          pluginData: event.data,
-        });
+        chrome.runtime.sendMessage(event.data);
+      }
+
+      // Handle apiCall messages from plugin iframes
+      else if (event.data.type === "apiCall") {
+        console.log("sidepanel receive apiCall from iframe:", event);
+        // Forward the apiCall to the background script
+        chrome.runtime.sendMessage(event.data);
       }
     });
 
@@ -44,6 +48,20 @@ function IndexSidePanel() {
         if (iframe && iframe.contentWindow) {
           // Forward the message to the plugin iframe
           iframe.contentWindow.postMessage(message, "*")
+        } else {
+          console.error(`Plugin iframe not found for ID: ${pluginId}`);
+        }
+      } else if (message.type === "apiCallResponse") {
+        // Handle apiCall response from background script
+        const { requestId, pluginId, ...responseData } = message;
+        const iframe = iframeRefs.current[pluginId];
+
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage({
+            type: "response",
+            id: requestId,
+            ...responseData
+          }, "*");
         } else {
           console.error(`Plugin iframe not found for ID: ${pluginId}`);
         }

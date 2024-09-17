@@ -33,12 +33,35 @@ async function initializeAlgonius() {
       // Forward the registration to the Algonius instance
       algonius.registerPlugin(request.pluginData); 
       sendResponse({ success: true });
-    } else if (request.type === "pluginResponse") {
-      console.log("background receive plugin response:", request.pluginData);
+    } else if (request.type === "response") {
+      console.log("receive response:", request.data);
 
       // Forward the registration to the Algonius instance
-      algonius.handlePluginReply(request.pluginData); 
+      algonius.handlePluginReply(request.data); 
       sendResponse({ success: true });
+    } else if (request.type === "apiCall") {
+      console.log("Background received API call:", request.apiData);
+      // Handle API call asynchronously
+      algonius.handleAPICall(request.apiData).then(result => {
+        // Send the API call response back to the sidepanel
+        chrome.runtime.sendMessage({
+          type: "apiCallResponse",
+          requestId: request.apiData.requestId,
+          pluginId: sender.id,
+          ...result
+        });
+      }).catch(error => {
+        chrome.runtime.sendMessage({
+          type: "apiCallResponse",
+          requestId: request.apiData.requestId,
+          pluginId: sender.id,
+          success: false,
+          error: error.message
+        });
+      });
+      // Send an immediate response to keep the message channel open
+      sendResponse({ success: true });
+      return true; // Indicates that the response will be sent asynchronously
     }
   });
 }
