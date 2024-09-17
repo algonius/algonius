@@ -1,18 +1,31 @@
 import { AppConfig, PluginConfig } from "./config";
 import { TradeSignal } from "./types";
 import { Agent } from "./modules/ai-decision";
-import { PluginManager, ScraperPlugin } from "./plugins";
+import { PluginManager, ScraperPlugin } from "./plugin";
+import { MessageProxy } from "~utils/messaging";
 
 export class Algonius {
   private agent: Agent;
   private timerId: NodeJS.Timeout | null = null;
   private interval: number; // Timer interval in milliseconds
   private pluginManager: PluginManager;
+  private messageProxy: MessageProxy;
 
   constructor(config: AppConfig) { // Default interval: 5 minutes
     this.agent = new Agent(config.ai);
     this.interval = config.interval;
-    this.pluginManager = new PluginManager();
+    this.messageProxy = new MessageProxy();
+    this.pluginManager = new PluginManager(this.messageProxy);
+  }
+
+  public registerPlugin(pluginData: any): void {
+    console.log("Registering plugin through Algonius:", pluginData);
+    this.pluginManager.registerPlugin(pluginData);
+  }
+
+  public handlePluginReply(msg: any): void {
+    console.log("Receive plugin reply message through Algonius:", msg);
+    this.messageProxy.replyMessage(msg)
   }
 
   // Trade Execution Module (Placeholder)
@@ -40,9 +53,10 @@ export class Algonius {
       // Format data for AI
       let processedData = "";
       for (let i = 0; i < activeScrapers.length; i++) {
-        processedData += activeScrapers[i].formatDataForAI(data[i]);
+        processedData += await activeScrapers[i].formatDataForAI(data[i]);
       }
 
+      console.log(`processedData:`, processedData);
       const signal = await this.agent.generateTradeSignal(processedData)
 
       // Evaluate and potentially execute the trade signal

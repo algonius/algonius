@@ -16,7 +16,20 @@ export class Agent {
     this.aiConfig = aiConfig;
     this.aiProvider = createAIProvider(aiConfig.provider);
     this.prompt = ChatPromptTemplate.fromTemplate(
-      "You are a sophisticated trading AI assistant. Your goal is to analyze market data and provide trading suggestions based on the user's strategy.\nMarket Data:\n{marketData}\nTrading Suggestion (JSON format):"
+      `You are a sophisticated trading AI assistant. 
+      Your goal is to analyze market data and provide trading suggestions 
+      based on the user's strategy.
+      
+      Market Data:
+      {marketData}
+      
+      Please provide your trading suggestion in JSON format with the following keys:
+      
+      * **action**:  (string) The trading action to take. Can be "buy", "sell", or "hold".
+      * **symbol**: (string) The symbol of the asset to trade.
+      * **quantity**: (number) The quantity of the asset to trade.
+
+      Trading Suggestion (JSON format):`
     );
   }
 
