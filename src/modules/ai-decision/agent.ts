@@ -21,25 +21,37 @@ export class Agent {
       based on the user's strategy.
       
       Market Data:
+      ###
       {marketData}
+      ###
       
-      Please provide your trading suggestion in JSON format with the following keys:
-      
-      * **action**:  (string) The trading action to take. Can be "buy", "sell", or "hold".
-      * **symbol**: (string) The symbol of the asset to trade.
-      * **quantity**: (number) The quantity of the asset to trade.
+      Constraints:
+      1. Exclusively use the commands listed in double quotes e.g. "command name"
+      2. The command's parameters only support strings. If the parameters are of other types, please convert them all to strings.
+      3. Command parameters do not support variables or expressions. Please fill them in after calculating them step by step.
+      4、Be careful not to open positions repeatedly. If you need to adjust the take profit and stop loss, please use the exchange.update_position command.
+      5、The analyze statement can be very long to ensure that the reasoning process of the analysis is rigorous.
+      6、When comparing two numbers, if a digit in the decimal part is already greater, there's no need to compare the subsequent digits.
+      7、The returned JSON format does not support comments
 
-      Trading Suggestion (JSON format):`
+      You should only respond in JSON format as described below, no other explanation is required
+      Response Format: 
+      {
+          "thoughts": {
+              "plan": "analysis steps",
+              "analyze": "step-by-step analysis",
+              "detail": "output detailed calculation process",
+              "reflection": "constructive self-criticism",
+              "speak": "thoughts summary to say to user"
+          },
+          "symbol": "The symbol of the asset to trade",
+          "quantity": "The quantity of the asset to trade."
+          "action": "The trading action to take. Can be "buy", "sell", or "hold""
+      }
+      
+      Ensure the response can be parsed by golang json.Unmarshal
+    `
     );
-  }
-
-  async start(): Promise<void> {
-    try {
-      await this.aiProvider.configure(this.aiConfig);
-      console.log("AI Agent started.");
-    } catch (error) {
-      console.error("Error starting AI Agent:", error);
-    }
   }
 
   stop(): void {
