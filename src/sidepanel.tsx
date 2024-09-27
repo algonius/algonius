@@ -1,6 +1,11 @@
 // src/sidepanel.tsx
 import { useState, useEffect, useRef } from "react";
 import { PluginConfig, useConfig } from "~config";
+import ThemeToggle from "~ui/components/ThemeToggle";
+import MainPane from "~ui/pages/MainPane";
+
+import "~ui/static/style.css"
+import "~ui/static/index.css"
 
 // Timeout duration in milliseconds (e.g., 20 seconds)
 const RESPONSE_TIMEOUT_MS = 20000;
@@ -129,28 +134,20 @@ function IndexSidePanel() {
   }, [config]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 16,
-      }}
-    >
-      <h2>
-        Welcome to your
-        <a href="https://www.plasmo.com" target="_blank"> Plasmo </a>
-        Extension!
-      </h2>
-      <input onChange={(e) => setData(e.target.value)} value={data} />
-      <a href="https://docs.plasmo.com" target="_blank"> View Docs </a>
-
-      {/* Display iframe IDs for debugging */}
-      <h3>Loaded Plugin Iframes:</h3>
-      <ul>
-        {Object.keys(iframeRefs.current).map((id) => (
-          <li key={id}>{id}</li>
-        ))}
-      </ul>
+    <div className="bg-background text-text min-h-screen">
+      <header className="bg-primary text-background p-4">
+        <h1 className="text-2xl font-bold">My Themed App</h1>
+        <ThemeToggle />
+      </header>
+      <main className="p-4">
+        <MainPane></MainPane>
+        <h3>Loaded Plugin Iframes:</h3>
+        <ul>
+          {Object.keys(iframeRefs.current).map((id) => (
+            <li key={id}>{id}</li>
+          ))}
+        </ul>
+      </main>
     </div>
   );
 }

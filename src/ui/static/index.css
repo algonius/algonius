@@ -1,0 +1,13 @@
+:root {
+  --color-primary: 59 130 246; /* 蓝色 */
+  --color-secondary: 249 115 22; /* 橙色 */
+  --color-background: 255 255 255; /* 白色 */
+  --color-text: 17 24 39; /* 深灰色 */
+}
+
+[data-theme="dark"] {
+  --color-primary: 96 165 250; /* 亮蓝色 */
+  --color-secondary: 251 146 60; /* 亮橙色 */
+  --color-background: 31 41 55; /* 深灰色 */
+  --color-text: 243 244 246; /* 浅灰色 */
+}

@@ -1,0 +1,32 @@
+import { useEffect, useRef } from 'react'
+import Message from './Message'
+import * as atoms from '../stores/atoms'
+import { useAtom, useAtomValue } from 'jotai'
+import { cn } from '~/utils/utils'
+
+interface Props { }
+
+export default function MessageList(props: Props) {
+    const currentSession = useAtomValue(atoms.currentSessionAtom)
+    const currentMessageList = useAtomValue(atoms.currentMessageListAtom)
+
+    return (
+        <div className={cn('w-full h-3/4 mx-auto')}>
+            <div className='overflow-y-auto h-full pr-0 pl-0'>
+                {
+                    currentMessageList.map((msg, index) => (
+                        <Message
+                            id={msg.id}
+                            key={'msg-' + msg.id}
+                            msg={msg}
+                            sessionId={currentSession.id}
+                            sessionType={currentSession.type || 'chat'}
+                            className={index === 0 ? 'pt-4' : ''}
+                            collapseThreshold={msg.role === 'system' ? 150 : undefined}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    )
+}
