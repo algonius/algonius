@@ -11,12 +11,15 @@ export default function MainPane(props: Props) {
     const currentSession = useAtomValue(atoms.currentSessionAtom)
 
     return (
-        <div
-            className="h-full w-full flex flex-col" 
-        >
+        <div className="h-full w-full flex flex-col">
             <Header />
-            <MessageList />
-            <InputBox currentSessionId={currentSession.id} currentSessionType={currentSession.type || 'chat'}/>
+            <div className="flex-grow overflow-y-auto">
+                <MessageList />
+            </div>
+            <InputBox 
+                currentSessionId={currentSession.id} 
+                currentSessionType={currentSession.type || 'chat'}
+            />
         </div>
     )
 }

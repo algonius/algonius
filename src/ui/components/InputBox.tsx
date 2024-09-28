@@ -69,27 +69,9 @@ export default function InputBox(props: Props) {
                 <div className="flex flex-row flex-nowrap justify-between py-1">
                     <div className="flex flex-row items-center">
                         <MiniButton
-                            className="mr-2 hover:bg-transparent"
-                            onClick={() => {
-                                setEasterEgg(true)
-                                setTimeout(() => setEasterEgg(false), 1000)
-                            }}
-                        >
-                            <img
-                                className={cn('w-5 h-5', easterEgg ? 'animate-spin' : '')}
-                                src="/path-to-your-icon.png"
-                                alt="Easter Egg"
-                            />
-                        </MiniButton>
-                        <MiniButton
                             className="mr-2 text-gray-700 hover:text-gray-900"
                             onClick={() =>
                                 setChatConfigDialogSession(sessionActions.getCurrentSession())
-                            }
-                            tooltipTitle={
-                                <div className="text-center inline-block">
-                                    <span>{t('Customize settings for the current conversation')}</span>
-                                </div>
                             }
                             tooltipPlacement="top"
                         >
@@ -99,11 +81,6 @@ export default function InputBox(props: Props) {
                     <div className="flex flex-row items-center">
                         <MiniButton
                             className="w-8 ml-2 bg-blue-500 text-white hover:bg-blue-600"
-                            tooltipTitle={
-                                <div className="text-center inline-block">
-                                    {t('[Enter] send, [Shift+Enter] line break, [Ctrl+Enter] send without generating')}
-                                </div>
-                            }
                             tooltipPlacement="top"
                             onClick={() => handleSubmit()}
                         >

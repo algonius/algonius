@@ -136,7 +136,7 @@ function IndexSidePanel() {
   }, [config]);
 
   return (
-    <div className="flex h-screen"> 
+    <div className="fixed top-0 bottom-0 flex"> 
       <MainPane /> 
       <SideBar /> 
     </div>

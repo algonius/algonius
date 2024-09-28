@@ -11,3 +11,8 @@
   --color-background: 31 41 55; /* 深灰色 */
   --color-text: 243 244 246; /* 浅灰色 */
 }
+
+.sidepanel-container {
+  height: 100%;
+  display: flex;
+}
