@@ -1,4 +1,4 @@
-import { atom, SetStateAction } from 'jotai'
+import { atom, WritableAtom } from 'jotai'
 import { Message, Session } from '~ui/types/index'
 
 const messages = [
@@ -28,4 +28,5 @@ export const currentSessionAtom = atom<Session>({
   type: 'chat',
 })
 
-export const chatConfigDialogAtom = atom<Session | null>(null)
+export const chatConfigDialogAtom = atom<Session | null>(null) as WritableAtom<Session | null, Session[], Session>;
+

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Tooltip } from '@mui/material'
 import { cn } from '~utils/utils'
 
 export default function MiniButton(props: {
@@ -15,7 +14,7 @@ export default function MiniButton(props: {
     const button = (
         <button onClick={onClick} disabled={disabled}
             className={cn(
-                'bg-transparent hover:bg-slate-400/25',
+                'bg-transparent hover:bg-gray-200',
                 'border-none rounded',
                 'h-8 w-8 p-1',
                 disabled ? '' : 'cursor-pointer',
@@ -30,8 +29,11 @@ export default function MiniButton(props: {
         return button
     }
     return (
-        <Tooltip title={tooltipTitle} placement={tooltipPlacement}>
+        <div className="relative"> 
             {button}
-        </Tooltip>
+            <div className={`absolute ${tooltipPlacement === 'top' ? 'bottom-full' : 'top-full'} left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white rounded-md shadow-md`}>
+                {tooltipTitle}
+            </div>
+        </div>
     )
 }

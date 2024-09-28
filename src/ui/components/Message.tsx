@@ -1,14 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import Box from '@mui/material/Box'
-import Avatar from '@mui/material/Avatar'
-import SmartToyIcon from '@mui/icons-material/SmartToy'
-import {
-  useTheme,
-} from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Message, SessionType } from '../types/index'
 import { cn } from '~/utils/utils'
-
 
 export interface Props {
   id?: string
@@ -23,13 +16,12 @@ export interface Props {
 
 export default function Message(props: Props) {
   const { t } = useTranslation()
-  const theme = useTheme()
   const ref = useRef<HTMLDivElement>(null)
 
   const { msg, className, collapseThreshold, hiddenButtonGroup, small } = props
 
   return (
-    <Box
+    <div
       ref={ref}
       id={props.id}
       key={msg.id}
@@ -45,27 +37,15 @@ export default function Message(props: Props) {
         }[msg?.role || 'user'],
         className,
       )}
-      sx={{
-        margin: '0',
-        paddingBottom: '0.1rem',
-        paddingX: '1rem',
-        [theme.breakpoints.down('sm')]: {
-          paddingX: '0.3rem',
-        },
-      }}
     >
-      <Avatar
-        sx={{
-          backgroundColor: theme.palette.primary.main,
-          width: '28px',
-          height: '28px',
-        }}
-      >
-        <SmartToyIcon fontSize='small' />
-      </Avatar>
-      <p>
-        {msg.content}
-      </p>
-    </Box>
+      <div className="flex items-center"> 
+        <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center mr-2">
+          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C3 19.03 4.168 19.5 7.5 19.5s4.168-.47 4.5 1V6.253z" /></svg>
+        </div>
+        <p className="text-gray-700">
+          {msg.content}
+        </p>
+      </div>
+    </div>
   )
 }

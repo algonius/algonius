@@ -1,17 +1,13 @@
-import React, { useRef, useState } from 'react'
-import { Typography, useTheme } from '@mui/material'
-import { SessionType, createMessage } from '../types'
+import { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import * as atoms from '../stores/atoms'
-import { useSetAtom } from 'jotai'
-import * as sessionActions from '../stores/sessionActions'
-import {
-    SendHorizontal,
-    Settings2,
-} from 'lucide-react'
-import { cn } from '~utils/utils'
+import { SendHorizontal, Settings2 } from 'lucide-react'
+import { cn } from '~/utils/utils'
 import MiniButton from './MiniButton'
 import _ from 'lodash'
+import * as sessionActions from '../stores/sessionActions'
+import { useSetAtom } from 'jotai'
+import * as atoms from '../stores/atoms'
+import { SessionType, createMessage } from '../types/index'
 
 export interface Props {
     currentSessionId: string
@@ -19,7 +15,7 @@ export interface Props {
 }
 
 export default function InputBox(props: Props) {
-    const theme = useTheme()
+    // Removed useTheme hook and related theme usage
     const setChatConfigDialogSession = useSetAtom(atoms.chatConfigDialogAtom)
     const { t } = useTranslation()
     const [messageInput, setMessageInput] = useState('')
@@ -48,7 +44,7 @@ export default function InputBox(props: Props) {
 
     const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (
-            event.keyCode === 13 &&
+            event.key === 'Enter' &&
             !event.shiftKey &&
             !event.ctrlKey &&
             !event.altKey &&
@@ -58,7 +54,7 @@ export default function InputBox(props: Props) {
             handleSubmit()
             return
         }
-        if (event.keyCode === 13 && event.ctrlKey) {
+        if (event.key === 'Enter' && event.ctrlKey) {
             event.preventDefault()
             handleSubmit(false)
             return
@@ -68,75 +64,70 @@ export default function InputBox(props: Props) {
     const [easterEgg, setEasterEgg] = useState(false)
 
     return (
-        <div className='pl-2 pr-4'
-            style={{
-                borderTopWidth: '1px',
-                borderTopStyle: 'solid',
-                borderTopColor: theme.palette.divider,
-            }}
-        >
+        <div className="pl-2 pr-4 border-t border-gray-300">
             <div className={cn('w-full mx-auto flex flex-col')}>
-                <div className='flex flex-row flex-nowrap justify-between py-1'>
-                    <div className='flex flex-row items-center'>
-                        <MiniButton className='mr-2 hover:bg-transparent' style={{ color: theme.palette.text.primary }}
+                <div className="flex flex-row flex-nowrap justify-between py-1">
+                    <div className="flex flex-row items-center">
+                        <MiniButton
+                            className="mr-2 hover:bg-transparent"
                             onClick={() => {
                                 setEasterEgg(true)
                                 setTimeout(() => setEasterEgg(false), 1000)
                             }}
                         >
-                            <img className={cn('w-5 h-5', easterEgg ? 'animate-spin' : '')} />
+                            <img
+                                className={cn('w-5 h-5', easterEgg ? 'animate-spin' : '')}
+                                src="/path-to-your-icon.png"
+                                alt="Easter Egg"
+                            />
                         </MiniButton>
-                        <MiniButton className='mr-2' style={{ color: theme.palette.text.primary }}
-                            onClick={() => setChatConfigDialogSession(sessionActions.getCurrentSession())}
+                        <MiniButton
+                            className="mr-2 text-gray-700 hover:text-gray-900"
+                            onClick={() =>
+                                setChatConfigDialogSession(sessionActions.getCurrentSession())
+                            }
                             tooltipTitle={
-                                <div className='text-center inline-block'>
+                                <div className="text-center inline-block">
                                     <span>{t('Customize settings for the current conversation')}</span>
                                 </div>
                             }
-                            tooltipPlacement='top'
+                            tooltipPlacement="top"
                         >
-                            <Settings2 size='22' strokeWidth={1} />
+                            <Settings2 className="w-5 h-5" />
                         </MiniButton>
                     </div>
-                    <div className='flex flex-row items-center'>
-                        <MiniButton className='w-8 ml-2'
-                            style={{
-                                color: theme.palette.getContrastText(theme.palette.primary.main),
-                                backgroundColor: theme.palette.primary.main,
-                            }}
+                    <div className="flex flex-row items-center">
+                        <MiniButton
+                            className="w-8 ml-2 bg-blue-500 text-white hover:bg-blue-600"
                             tooltipTitle={
-                                <Typography variant="caption">
+                                <div className="text-center inline-block">
                                     {t('[Enter] send, [Shift+Enter] line break, [Ctrl+Enter] send without generating')}
-                                </Typography>
+                                </div>
                             }
-                            tooltipPlacement='top'
+                            tooltipPlacement="top"
                             onClick={() => handleSubmit()}
                         >
-                            <SendHorizontal size='22' strokeWidth={1} />
+                            <SendHorizontal className="w-5 h-5" />
                         </MiniButton>
                     </div>
                 </div>
-                <div className='w-full pl-1 pb-2'>
+                <div className="w-full pl-1 pb-2">
                     <textarea
                         className={cn(
                             `w-full max-h-[${maxTextareaHeight}px]`,
-                            'overflow-y resize-none border-none outline-none',
-                            'bg-transparent p-1'
+                            'overflow-y-auto resize-none border-none outline-none bg-transparent p-1 text-gray-700 font-sans text-base'
                         )}
-                        value={messageInput} onChange={onMessageInput}
+                        value={messageInput}
+                        onChange={onMessageInput}
                         onKeyDown={onKeyDown}
                         ref={inputRef}
                         style={{
                             height: 'auto',
-                            minHeight: minTextareaHeight + 'px',
-                            color: theme.palette.text.primary,
-                            fontFamily: theme.typography.fontFamily,
-                            fontSize: theme.typography.body1.fontSize,
+                            minHeight: `${minTextareaHeight}px`,
                         }}
                         placeholder={t('Type your question here...') || ''}
                     />
-                    <div className='flex flex-row items-center'>
-                    </div>
+                    <div className="flex flex-row items-center"></div>
                 </div>
             </div>
         </div>

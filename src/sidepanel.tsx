@@ -1,8 +1,8 @@
 // src/sidepanel.tsx
 import { useState, useEffect, useRef } from "react";
 import { PluginConfig, useConfig } from "~config";
-import ThemeToggle from "~ui/components/ThemeToggle";
-import MainPane from "~ui/pages/MainPane";
+import MainPane from "~ui/components/MainPane";
+import SideBar from "~ui/components/SideBar";
 
 import "~ui/static/style.css"
 import "~ui/static/index.css"
@@ -84,6 +84,7 @@ function IndexSidePanel() {
     builtInPlugins.forEach((plugin) => {
       // Create an iframe for each plugin
       const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
       iframe.src = plugin.sandboxPath; // Path to the sandbox HTML
       iframe.id = plugin.id; // Set the iframe ID for later communication
 
@@ -107,6 +108,7 @@ function IndexSidePanel() {
     thirdPartyPlugins.forEach((plugin) => {
       // Create an iframe for each plugin
       const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
       iframe.src = "sandboxes/plugin_sandbox.html"; // Path to the sandbox HTML
       iframe.id = plugin.id; // Set the iframe ID for later communication
 
@@ -134,20 +136,9 @@ function IndexSidePanel() {
   }, [config]);
 
   return (
-    <div className="bg-background text-text min-h-screen">
-      <header className="bg-primary text-background p-4">
-        <h1 className="text-2xl font-bold">My Themed App</h1>
-        <ThemeToggle />
-      </header>
-      <main className="p-4">
-        <MainPane></MainPane>
-        <h3>Loaded Plugin Iframes:</h3>
-        <ul>
-          {Object.keys(iframeRefs.current).map((id) => (
-            <li key={id}>{id}</li>
-          ))}
-        </ul>
-      </main>
+    <div className="flex h-screen"> 
+      <MainPane /> 
+      <SideBar /> 
     </div>
   );
 }
