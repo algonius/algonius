@@ -18,6 +18,7 @@ export interface PluginConfig {
 
 export interface AppConfig {
   interval: number; // Algonius running interval in milliseconds
+  theme: string;
   ai: AIConfig; 
   plugins: Array<PluginConfig>
 }

@@ -9,11 +9,15 @@
     "./**/*.tsx"
   ],
   "compilerOptions": {
+    "target": "ES2020",
+    "module": "esnext",
     "paths": {
       "~*": [
         "./src/*"
       ]
     },
-    "baseUrl": "."
+    "baseUrl": ".",
+    "verbatimModuleSyntax": false,
+    "jsx": "react-jsx"
   }
 }

@@ -1,9 +1,7 @@
 import { useState, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { SendHorizontal, Settings2 } from 'lucide-react'
 import { cn } from '~/utils/utils'
 import MiniButton from './MiniButton'
-import _ from 'lodash'
 import * as sessionActions from '../stores/sessionActions'
 import { useSetAtom } from 'jotai'
 import * as atoms from '../stores/atoms'
@@ -15,9 +13,7 @@ export interface Props {
 }
 
 export default function InputBox(props: Props) {
-    // Removed useTheme hook and related theme usage
     const setChatConfigDialogSession = useSetAtom(atoms.chatConfigDialogAtom)
-    const { t } = useTranslation()
     const [messageInput, setMessageInput] = useState('')
     const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
@@ -61,38 +57,35 @@ export default function InputBox(props: Props) {
         }
     }
 
-    const [easterEgg, setEasterEgg] = useState(false)
-
     return (
-        <div className="pl-2 pr-4 border-t border-gray-300">
-            <div className={cn('w-full mx-auto flex flex-col')}>
-                <div className="flex flex-row flex-nowrap justify-between py-1">
-                    <div className="flex flex-row items-center">
-                        <MiniButton
-                            className="mr-2 text-gray-700 hover:text-gray-900"
-                            onClick={() =>
-                                setChatConfigDialogSession(sessionActions.getCurrentSession())
-                            }
-                            tooltipPlacement="top"
-                        >
-                            <Settings2 className="w-5 h-5" />
-                        </MiniButton>
-                    </div>
-                    <div className="flex flex-row items-center">
-                        <MiniButton
-                            className="w-8 ml-2 bg-blue-500 text-white hover:bg-blue-600"
-                            tooltipPlacement="top"
-                            onClick={() => handleSubmit()}
-                        >
-                            <SendHorizontal className="w-5 h-5" />
-                        </MiniButton>
-                    </div>
+        <div className="px-4 py-3 border-t border-gray-200 bg-background">
+            <div className="w-full mx-auto flex flex-col">
+                <div className="flex flex-row flex-nowrap justify-between items-center mb-2">
+                    <MiniButton
+                        className="text-text hover:text-primary transition-colors"
+                        onClick={() =>
+                            setChatConfigDialogSession(sessionActions.getCurrentSession())
+                        }
+                        tooltipPlacement="top"
+                    >
+                        <Settings2 className="w-5 h-5" />
+                    </MiniButton>
+                    <MiniButton
+                        className="w-8 bg-primary text-background hover:bg-primary/90 transition-colors"
+                        tooltipPlacement="top"
+                        onClick={() => handleSubmit()}
+                    >
+                        <SendHorizontal className="w-5 h-5" />
+                    </MiniButton>
                 </div>
-                <div className="w-full pl-1 pb-2">
+                <div className="w-full">
                     <textarea
                         className={cn(
                             `w-full max-h-[${maxTextareaHeight}px]`,
-                            'overflow-y-auto resize-none border-none outline-none bg-transparent p-1 text-gray-700 font-sans text-base'
+                            'overflow-y-auto resize-none border border-gray-200 rounded-md',
+                            'outline-none bg-background px-3 py-2 text-text placeholder-gray-400',
+                            'font-sans text-base focus:ring-2 focus:ring-primary/50 transition-all',
+                            'box-border'  
                         )}
                         value={messageInput}
                         onChange={onMessageInput}
@@ -102,9 +95,8 @@ export default function InputBox(props: Props) {
                             height: 'auto',
                             minHeight: `${minTextareaHeight}px`,
                         }}
-                        placeholder={t('Type your question here...') || ''}
+                        placeholder={'Type your question here...'}
                     />
-                    <div className="flex flex-row items-center"></div>
                 </div>
             </div>
         </div>

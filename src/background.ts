@@ -5,7 +5,9 @@ import { Storage } from "@plasmohq/storage";
 // Function to initialize and start Algonius
 async function initializeAlgonius() {
   // Instantiate Storage
-  const storage = new Storage();
+  const storage = new Storage({
+    area: "local"
+  });
   const cfg = await loadConfig(storage)
   console.log("config:", cfg);
   

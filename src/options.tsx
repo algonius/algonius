@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Storage } from "@plasmohq/storage";
+import { useConfig } from "~config";
+
+import "~ui/static/style.css";
+import "~ui/static/index.css";
 
 const predefinedIntervals = [
   { label: "5 seconds", value: 5 * 1000 },
@@ -10,40 +13,22 @@ const predefinedIntervals = [
   { label: "1 hour", value: 60 * 60 * 1000 },
   { label: "4 hours", value: 4 * 60 * 60 * 1000 },
   { label: "1 day", value: 24 * 60 * 60 * 1000 },
-];
+ ];
 
+const availableThemes = ["light", "dark"];
 
 function IndexOptions() {
+  const [config, saveConfig] = useConfig();
+
   const [selectedInterval, setSelectedInterval] = useState<number | null>(predefinedIntervals[0].value);
   const [customInterval, setCustomInterval] = useState("");
-
-  const storage = new Storage();
-
+  const [selectedTheme, setSelectedTheme] = useState(config.theme);
 
   // Load saved interval from storage
   useEffect(() => {
-    storage.get("interval").then((interval: unknown) => {
-      if (interval) {
-        setSelectedInterval(interval as number);
-      } else {
-        // Set default interval (e.g., 5 minutes)
-        setSelectedInterval(5 * 60 * 1000);
-      }
-    });
-  }, []);
-
-  // Save interval to storage when it changes
-  useEffect(() => {
-    if (selectedInterval !== null) {
-      storage.set("interval", selectedInterval);
-
-      // Send message to background script to update Algonius interval
-      chrome.runtime.sendMessage({
-        action: "updateAlgoniusInterval",
-        interval: selectedInterval,
-      });
-    }
-  }, [selectedInterval]);
+    setSelectedInterval(config.interval);
+    setSelectedTheme(config.theme);
+  }, [config]);
 
   const handleIntervalChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedInterval(parseInt(event.target.value, 10));
@@ -66,8 +51,20 @@ function IndexOptions() {
     }
   };
 
+  const handleThemeChange = (
+    theme: string
+  ) => {
+    console.log("Selected theme:", theme);
+
+    setSelectedTheme(theme);
+
+    saveConfig({
+      theme: theme
+    })
+  };
+
   return (
-    <div style={{ padding: 16 }}>
+    <div className="container mx-auto p-4">
       <h2>Algonius Settings</h2>
 
       <h3>Running Interval</h3>
@@ -85,18 +82,29 @@ function IndexOptions() {
         <div>
           <input
             type="number"
+            className="w-full p-2 border rounded"
             value={customInterval}
             onChange={handleCustomIntervalChange}
             placeholder="Enter interval in seconds"
           />
-          <button onClick={handleCustomIntervalSet}>Set</button>
+          <button className="bg-primary text-white px-4 py-2 rounded" onClick={handleCustomIntervalSet}>Set</button>
         </div>
       )}
 
-      {/* ... other settings options can be added here ... */}
+      <h3>Theme</h3>     
+      <select value={selectedTheme} onChange={(e) => handleThemeChange(e.target.value)}>
+        {availableThemes.map((theme) => (
+          <option key={theme} value={theme}>
+            {theme}
+          </option>
+        ))}
+      </select>
+      
+      {/* You can add a section to explain what themes mean and how to use them */}
+      <p>Select your preferred theme. </p>
+      
     </div>
   );
 }
 
 export default IndexOptions;
-

@@ -11,11 +11,24 @@ import "~ui/static/index.css"
 const RESPONSE_TIMEOUT_MS = 20000;
 
 function IndexSidePanel() {
-  const [data, setData] = useState("");
-  const config = useConfig();
+  const [inited, setInit] = useState<boolean>(false);
+  const [config, _setConfig] = useConfig();
   const iframeRefs = useRef<{ [id: string]: HTMLIFrameElement }>({});
 
   useEffect(() => {
+    if (config && config.theme=='dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [config]);
+
+  useEffect(() => {
+    if (inited) {
+      return
+    }
+    setInit(true);
+
     // Add a message listener for messages from plugin iframes
     window.addEventListener("message", (event) => {
       // Check if the message is a "register" message
@@ -133,7 +146,7 @@ function IndexSidePanel() {
         document.body.removeChild(iframe);
       });
     };
-  }, [config]);
+  }, [inited, config]);
 
   return (
     <div className="fixed top-0 bottom-0 flex"> 

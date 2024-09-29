@@ -11,7 +11,7 @@ export default function MainPane(props: Props) {
     const currentSession = useAtomValue(atoms.currentSessionAtom)
 
     return (
-        <div className="h-full w-full flex flex-col">
+        <div className="h-full w-full flex flex-col bg-background text-text">
             <Header />
             <div className="flex-grow overflow-y-auto">
                 <MessageList />

@@ -2,6 +2,7 @@ import { AppConfig } from "./types";
 
 export const defaultAppConfig: AppConfig = {
   interval: 60 * 1000, // Default interval: 10s
+  theme: 'light',
   ai: {
     provider: "ollama",
     baseUrl: "http://localhost:11434",
