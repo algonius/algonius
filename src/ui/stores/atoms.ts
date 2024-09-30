@@ -1,4 +1,5 @@
-import { atom, WritableAtom } from 'jotai'
+import { atom, WritableAtom, SetStateAction } from 'jotai'
+import { atomWithStorage } from '~utils/storage'
 import { Message, Session } from '~ui/types/index'
 
 const messages = [
@@ -29,4 +30,34 @@ export const currentSessionAtom = atom<Session>({
 })
 
 export const chatConfigDialogAtom = atom<Session | null>(null) as WritableAtom<Session | null, Session[], Session>;
+
+
+// sessions
+
+const _sessionsAtom = atomWithStorage<Session[]>("chat_sessions", [])
+export const sessionsAtom = atom(
+    async (get) => {
+        let sessions = await get(_sessionsAtom)
+        if (sessions.length === 0) {
+            sessions = []
+        }
+        return sessions
+    },
+    async (get, set, update: SetStateAction<Session[]>) => {
+        const sessions = await get(_sessionsAtom)
+        let newSessions = typeof update === 'function' ? update(sessions) : update
+        if (newSessions.length === 0) {
+            newSessions = []
+        }
+        set(_sessionsAtom, newSessions)
+    }
+)
+
+export const sortedSessionsAtom = atom(async (get) => {
+    return sortSessions(await get(sessionsAtom))
+})
+
+export function sortSessions(sessions: Session[]): Session[] {
+    return [...sessions].reverse()
+}
 

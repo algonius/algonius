@@ -1,12 +1,8 @@
+import { getDefaultStore } from 'jotai'
 import { Message, Session } from '~ui/types/index'
-
-export async function submitNewUserMessage(params: {
-  currentSessionId: string
-  newUserMsg: Message
-  needGenerating: boolean
-}) {
-  console.log("params:", params)
-}
+import { countWord } from "~ui/utils"
+import { estimateTokensFromMessages } from "~ui/utils"
+import * as atoms from "./atoms"
 
 const messages = [
   {
@@ -33,4 +29,38 @@ export function getCurrentSession(): Session {
     messages: messages, 
     type: 'chat',
   }
+}
+
+export function insertMessage(sessionId: string, msg: Message) {
+  const store = getDefaultStore()
+  msg.wordCount = countWord(msg.content)
+  msg.tokenCount = estimateTokensFromMessages([msg])
+
+  store.set(atoms.sessionsAtom, (sessions) =>
+      sessions.map((s) => {
+          if (s.id === sessionId) {
+              const newMessages = [...s.messages]
+              newMessages.push(msg)
+              return {
+                  ...s,
+                  messages: newMessages,
+              }
+          }
+          return s
+      })
+  )
+}
+
+export async function submitNewUserMessage(params: {
+  currentSessionId: string
+  newUserMsg: Message
+  needGenerating: boolean
+}) {
+  console.log("params:", params)
+
+  if (params.needGenerating) {
+    console.log("generating...")
+  }
+
+  await insertMessage(params.currentSessionId, params.newUserMsg)
 }

@@ -2297,6 +2297,88 @@
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.19.2.tgz#0c896535473291cb41f152c180bedd5680a3b273"
   integrity sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==
 
+"@sentry-internal/browser-utils@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/browser-utils/-/browser-utils-8.32.0.tgz#9bcea7d107d5adc82ed9331168468ee44eef8f2d"
+  integrity sha512-DpUGhk5O1OVjT0fo9wsbEdO1R/S9gGBRDtn9+FFVeRtieJHwXpeZiLK+tZhTOvaILmtSoTPUEY3L5sK4j5Xq9g==
+  dependencies:
+    "@sentry/core" "8.32.0"
+    "@sentry/types" "8.32.0"
+    "@sentry/utils" "8.32.0"
+
+"@sentry-internal/feedback@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/feedback/-/feedback-8.32.0.tgz#ac9a08b060d1016704e42f8c2726ead419f64061"
+  integrity sha512-XB7hiVJQW1tNzpoXIHbvm3rjipIt7PZiJJtFg2vxaqu/FzdgOcYqQiwIKivJVAKuRZ9rIeJtK1jdXQFOc/TRJA==
+  dependencies:
+    "@sentry/core" "8.32.0"
+    "@sentry/types" "8.32.0"
+    "@sentry/utils" "8.32.0"
+
+"@sentry-internal/replay-canvas@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/replay-canvas/-/replay-canvas-8.32.0.tgz#5d56161b0b62b22cbd49db120e3ea56b370ead8c"
+  integrity sha512-oBbhtDBkD+5z/T0NVJ5VenBWAid/S9QdVrod/UqxVqU7F8N+E9/INFQI48zCWr4iVlUMcszJPDElvJEsMDvvBQ==
+  dependencies:
+    "@sentry-internal/replay" "8.32.0"
+    "@sentry/core" "8.32.0"
+    "@sentry/types" "8.32.0"
+    "@sentry/utils" "8.32.0"
+
+"@sentry-internal/replay@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/replay/-/replay-8.32.0.tgz#59e3ec7b51c9214eeae9fa617490b89ce6737e1c"
+  integrity sha512-yiEUnn2yyo1AIQIFNeRX3tdK8fmyKIkxdFS1WiVQmeYI/hFwYBTZPly0FcO/g3xnRMSA2tvrS+hZEaaXfK4WhA==
+  dependencies:
+    "@sentry-internal/browser-utils" "8.32.0"
+    "@sentry/core" "8.32.0"
+    "@sentry/types" "8.32.0"
+    "@sentry/utils" "8.32.0"
+
+"@sentry/browser@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry/browser/-/browser-8.32.0.tgz#3944bc5178e6cfffc8c71ba05920fee7dec5bd38"
+  integrity sha512-AEKFj64g4iYwEMRvVcxiY0FswmClRXCP1IEvCqujn8OBS8AjMOr1z/RwYieEs0D90yNNB3YEqF8adrKENblJmw==
+  dependencies:
+    "@sentry-internal/browser-utils" "8.32.0"
+    "@sentry-internal/feedback" "8.32.0"
+    "@sentry-internal/replay" "8.32.0"
+    "@sentry-internal/replay-canvas" "8.32.0"
+    "@sentry/core" "8.32.0"
+    "@sentry/types" "8.32.0"
+    "@sentry/utils" "8.32.0"
+
+"@sentry/core@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry/core/-/core-8.32.0.tgz#7c4b74afa7a15bd31f5e6881aac82ccfd753e1d6"
+  integrity sha512-+xidTr0lZ0c755tq4k75dXPEb8PA+qvIefW3U9+dQMORLokBrYoKYMf5zZTG2k/OfSJS6OSxatUj36NFuCs3aA==
+  dependencies:
+    "@sentry/types" "8.32.0"
+    "@sentry/utils" "8.32.0"
+
+"@sentry/react@^8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry/react/-/react-8.32.0.tgz#0f2cf7212df652653e32fa22778723035617f65d"
+  integrity sha512-YljqK+k80XOvyXjK2p2neTncRcSuwlpL7qHtNgwR1MHx18FEi7HXlnm13J4g3kxao4ORMxlCXCEPNXlLT+vqQg==
+  dependencies:
+    "@sentry/browser" "8.32.0"
+    "@sentry/core" "8.32.0"
+    "@sentry/types" "8.32.0"
+    "@sentry/utils" "8.32.0"
+    hoist-non-react-statics "^3.3.2"
+
+"@sentry/types@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry/types/-/types-8.32.0.tgz#dfd8aa9449a5f793b9c720888819a74a11f1790d"
+  integrity sha512-hxckvN2MzS5SgGDgVQ0/QpZXk13Vrq4BtZLwXhPhyeTmZtUiUfWvcL5TFQqLinfKdTKPe9q2MxeAJ0D4LalhMg==
+
+"@sentry/utils@8.32.0":
+  version "8.32.0"
+  resolved "https://registry.npmjs.org/@sentry/utils/-/utils-8.32.0.tgz#99a4298ee8fd7208ade470931c19d71c571dfce8"
+  integrity sha512-t1WVERhgmYURxbBj9J4/H2P2X+VKqm7B3ce9iQyrZbdf5NekhcU4jHIecPUWCPHjQkFIqkVTorqeBmDTlg/UmQ==
+  dependencies:
+    "@sentry/types" "8.32.0"
+
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
@@ -4906,6 +4988,13 @@ highlight.js@^11.7.0:
   version "11.10.0"
   resolved "https://registry.npmjs.org/highlight.js/-/highlight.js-11.10.0.tgz#6e3600dc4b33d6dc23d5bd94fbf72405f5892b92"
   integrity sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==
+
+hoist-non-react-statics@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
+  integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
+  dependencies:
+    react-is "^16.7.0"
 
 html-encoding-sniffer@^3.0.0:
   version "3.0.0"
@@ -7707,6 +7796,11 @@ react-i18next@^12.2.0:
   dependencies:
     "@babel/runtime" "^7.20.6"
     html-parse-stringify "^3.0.1"
+
+react-is@^16.7.0:
+  version "16.13.1"
+  resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+  integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 react-is@^17.0.1:
   version "17.0.2"
