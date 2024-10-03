@@ -2,6 +2,14 @@ import { loadConfig } from './config'
 import { Algonius } from "./algonius";
 import { Storage } from "@plasmohq/storage";
 
+function broadcastMessage(message) {
+  chrome.tabs.query({}, function(tabs) {
+      for (let tab of tabs) {
+          chrome.tabs.sendMessage(tab.id, message);
+      }
+  });
+}
+
 // Function to initialize and start Algonius
 async function initializeAlgonius() {
   // Instantiate Storage
@@ -13,6 +21,15 @@ async function initializeAlgonius() {
   
   // Instantiate Algonius with loaded or default interval
   const algonius = new Algonius(cfg);
+
+  algonius.on("notify", (msg)=>{
+    console.log("algonius notify msg:", msg);
+    
+    chrome.runtime.sendMessage({
+      type: "algonius-notify",
+      msg: msg,
+    });
+  });
 
   // Start Algonius when the extension is loaded
   await algonius.start();

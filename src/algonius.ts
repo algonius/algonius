@@ -1,10 +1,12 @@
+import { EventEmitter } from "events";
 import { AppConfig, PluginConfig } from "./config";
 import { TradeSignal } from "./types";
 import { Agent } from "./modules/ai-decision";
 import { PluginManager, ScraperPlugin } from "./plugin";
 import { MessageProxy } from "~utils/messaging";
 import { APIServer } from "~apis";
-export class Algonius {
+
+export class Algonius extends EventEmitter{
   private agent: Agent;
   private timerId: NodeJS.Timeout | null = null;
   private interval: number; // Timer interval in milliseconds
@@ -12,7 +14,9 @@ export class Algonius {
   private pluginManager: PluginManager;
   private apiServer: APIServer;
 
-  constructor(config: AppConfig) { // Default interval: 5 minutes
+  constructor(config: AppConfig) {
+    super()
+
     this.agent = new Agent(config.ai);
     this.interval = config.interval;
     this.messageProxy = new MessageProxy();
@@ -48,6 +52,7 @@ export class Algonius {
       const now = new Date();
       const formattedDate = now.toLocaleString('zh-CN', { hour12: false });
       console.log(`Algonius running at ${formattedDate}`);
+      this.emit("notify", `Algonius running at ${formattedDate}`);
       
       // Get active scrapers from the plugin manager
       const activeScrapers = this.pluginManager.getActivePluginsOfType('scraper') as ScraperPlugin[];
@@ -63,11 +68,13 @@ export class Algonius {
         processedData += await activeScrapers[i].formatDataForAI(data[i]);
       }
 
-      console.log(`processedData:`, processedData);
+      this.emit("notify", `processedData:`, processedData);
       const signal = await this.agent.generateTradeSignal(processedData)
 
       // Evaluate and potentially execute the trade signal
       if (signal) { // Add conditions for trade execution here (e.g., risk management)
+        this.emit("notify", `generateTradeSignal:${signal}`);
+
         await this.executeTrade(signal);
       }
     } catch (error) {
@@ -114,3 +121,6 @@ export class Algonius {
     }
   }
 }
+
+
+

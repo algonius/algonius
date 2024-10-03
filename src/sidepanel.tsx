@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { PluginConfig, useConfig } from "~config";
 import MainPane from "~ui/components/MainPane";
 import SideBar from "~ui/components/SideBar";
+import * as sessionActions from '~ui/stores/session_actions'
+import { SessionType, createMessage } from '~ui/types/index'
 
 import "~ui/static/style.css"
 import "~ui/static/index.css"
@@ -83,6 +85,15 @@ function IndexSidePanel() {
         } else {
           console.error(`Plugin iframe not found for ID: ${pluginId}`);
         }
+      } else if (message.type === "algonius-notify") {
+        console.log(`algonius-notify: ${message.type}: ${message.msg}`);
+
+        const newMessage = createMessage('user', message.msg)
+        sessionActions.submitNewUserMessage({
+          currentSessionId: 'default-session',
+            newUserMsg: newMessage,
+            needGenerating: false,
+        })
       } else {
         console.error(`Not support message type:`, message.type);
         sendResponse({ success: false, error: `Not support message type ${message.type}` });
