@@ -8,13 +8,12 @@ interface Props { }
 
 export default function MessageList(props: Props) {
     const currentSession = useAtomValue(atoms.currentSessionAtom)
-    const currentMessageList = useAtomValue(atoms.currentMessageListAtom)
 
     return (
         <div className={cn('w-full h-3/4 mx-auto')}>
             <div className='overflow-y-auto h-full pr-0 pl-0'>
                 {
-                    currentMessageList.map((msg, index) => (
+                    currentSession.messages.map((msg, index) => (
                         <Message
                             id={msg.id}
                             key={'msg-' + msg.id}

@@ -1,2 +1,2 @@
-export * from "./word-count"
+export * from "./word_count"
 export * from "./token"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChatBubbleLeftRightIcon, Cog6ToothIcon, UserIcon, SquaresPlusIcon } from '@heroicons/react/24/solid';
-import { openSetting } from '~ui/stores/settingActions';
+import { openSetting } from '~ui/stores/setting_actions';
 
 interface SideBarProps {}
 

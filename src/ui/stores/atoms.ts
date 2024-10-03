@@ -1,17 +1,16 @@
 import { atom, WritableAtom, SetStateAction } from 'jotai'
-import { atomWithStorage } from '~utils/storage'
 import { Message, Session } from '~ui/types/index'
 
 const messages = [
   {
     id: '1',
     role: 'system',
-    content: '我是你的AI助手，可以帮助你完成各种任务，例如：写文章、翻译、生成代码等等。请告诉我你的需求。' 
+    content: '我是你的AI助手，可以帮助你完成各种任务，例如：写文章、翻译、生成代码等等。请告诉我你的需求。'
   },
   {
     id: '2',
     role: 'user',
-    content: '请帮我写一篇关于人工智能的短文。' 
+    content: '请帮我写一篇关于人工智能的短文。'
   },
   {
     id: '3',
@@ -20,31 +19,23 @@ const messages = [
   }
 ] as Array<Message>;
 
-export const currentMessageListAtom = atom<Array<Message>>(messages) 
-
-export const currentSessionAtom = atom<Session>({
+const defaultSession = {
   id: 'default-session',
   name: '默认会话',
-  messages: messages, 
+  messages: messages,
   type: 'chat',
-})
+} as Session;
+
+export const currentMessageListAtom = atom<Array<Message>>(messages)
 
 export const chatConfigDialogAtom = atom<Session | null>(null) as WritableAtom<Session | null, Session[], Session>;
 
-
 // sessions
-
-const _sessionsAtom = atomWithStorage<Session[]>("chat_sessions", [])
+const _sessionsAtom = atom<Session[]>([defaultSession]) // Removed atomWithStorage
 export const sessionsAtom = atom(
-    async (get) => {
-        let sessions = await get(_sessionsAtom)
-        if (sessions.length === 0) {
-            sessions = []
-        }
-        return sessions
-    },
-    async (get, set, update: SetStateAction<Session[]>) => {
-        const sessions = await get(_sessionsAtom)
+    (get) => get(_sessionsAtom),
+    (get, set, update: SetStateAction<Session[]>) => {
+        const sessions = get(_sessionsAtom)
         let newSessions = typeof update === 'function' ? update(sessions) : update
         if (newSessions.length === 0) {
             newSessions = []
@@ -53,11 +44,37 @@ export const sessionsAtom = atom(
     }
 )
 
-export const sortedSessionsAtom = atom(async (get) => {
-    return sortSessions(await get(sessionsAtom))
+export const sortedSessionsAtom = atom((get) => {
+    return sortSessions(get(sessionsAtom))
 })
 
 export function sortSessions(sessions: Session[]): Session[] {
     return [...sessions].reverse()
 }
 
+const _currentSessionIdCachedAtom = atom<string | null>(null) // Removed atomWithStorage
+export const currentSessionIdAtom = atom(
+    (get) => {
+        const idCached = get(_currentSessionIdCachedAtom)
+        const sessions = get(sortedSessionsAtom)
+        if (idCached && sessions.some((session) => session.id === idCached)) {
+            return idCached
+        }
+        return sessions.length > 0 ? sessions[0].id : null // Handle empty sessions
+    },
+    (get, set, update: string | null) => { // Allow null update
+        set(_currentSessionIdCachedAtom, update)
+    }
+)
+
+
+
+export const currentSessionAtom = atom((get) => {
+  const id = get(currentSessionIdAtom)
+  const sessions = get(sessionsAtom)
+  let current = sessions.find((session) => session.id === id)
+  if (!current) {
+      return sessions[-1]
+  }
+  return current
+})

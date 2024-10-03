@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 import { atomWithStorage as jotaiAtomWithStorage } from 'jotai/utils'
-import { PlasmoStorage, StorageType } from "./PlasmoStorage"
+import { PlasmoStorage, StorageType } from "./plasmo_storage"
 
 export function atomWithStorage<T>(
   key: string,
